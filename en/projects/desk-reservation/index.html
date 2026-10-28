@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desk Reservation — desk booking on SPFx | Ilya Khudoeshko</title>
+<meta name="description" content="An SPFx web part for desk booking: date, zone, free desks, my reservations and cancelling. A live in-browser demo and the data schema.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/en/projects/desk-reservation/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/projects/desk-reservation/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/projects/desk-reservation/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/projects/desk-reservation/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ilya Khudoeshko">
+<meta property="og:title" content="Desk Reservation — desk booking on SPFx | Ilya Khudoeshko">
+<meta property="og:description" content="An SPFx web part for desk booking: date, zone, free desks, my reservations and cancelling. A live in-browser demo and the data schema.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/en/projects/desk-reservation/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Desk Reservation — desk booking on SPFx | Ilya Khudoeshko">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Desk Reservation — desk booking on SPFx | Ilya Khudoeshko">
+<meta name="twitter:description" content="An SPFx web part for desk booking: date, zone, free desks, my reservations and cancelling. A live in-browser demo and the data schema.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Ilya Khudoeshko">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.b8580eef.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Ilya Khudoeshko","url":"https://ilyakhudoeshkogit.github.io/en/","jobTitle":"SharePoint / SPFx developer","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image-en.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Ilya Khudoeshko","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"WebPage","url":"https://ilyakhudoeshkogit.github.io/en/projects/desk-reservation/","name":"Desk Reservation — desk booking on SPFx | Ilya Khudoeshko","inLanguage":"en","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ilyakhudoeshkogit.github.io/en/"},{"@type":"ListItem","position":2,"name":"Projects","item":"https://ilyakhudoeshkogit.github.io/en/projects/"},{"@type":"ListItem","position":3,"name":"Desk Reservation","item":"https://ilyakhudoeshkogit.github.io/en/projects/desk-reservation/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/en/">KHUDOESHKO I.<small>SharePoint / SPFx</small></a><nav aria-label="Site sections"><a href="/en/"><small>Sheet 1</small>Home</a><a href="/en/projects/" class="on"><small>Sheet 2</small>Projects</a><a href="/en/about/"><small>Sheet 3</small>About</a><a href="/en/contact/"><small>Sheet 4</small>Contact</a></nav><div class="ctl"><a class="langbtn" href="/projects/desk-reservation/" hreflang="ru" lang="ru" aria-label="Русская версия">RU</a><button type="button" id="theme" aria-label="Toggle theme">Theme</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/en/">Home</a> / <a href="/en/projects/">Projects</a> / Desk Reservation</p></div><div class="rv" style="--d:0.06s"><h1>Desk Reservation</h1></div><div class="rv" style="--d:0.12s"><p class="lead">An SPFx web part for booking desks. You can try its logic right in the browser below.</p></div></header><section><h2 class="dim rv"><i></i><span><b>01</b> · Description</span><i></i></h2><div class="rv"><div class="tb solo"><div class="c3"><small>Drawing no.</small><span>KHIO-02</span></div><div class="c1"><small>Lit.</small><span>T</span></div><div class="c1"><small>Sheet</small><span>2.3</span></div><div class="c1 e"><small>Total</small><span>4</span></div><div class="c4 name"><small>Title</small><h2 class="ttl">Desk Reservation</h2><em class="tag">personal / learning project</em></div><div class="c2 e"><small>Drawn</small><span>Khudoeshko I.</span></div><div class="c6 e rl"><small>Stack</small><span>SPFx 1.23 · React · Fluent UI · REST</span></div></div></div><div class="split" style="margin-top:34px"><div class="rv"><p class="what">Desk booking: pick a date and a zone, see free desks as cards and book one. All data lives in SharePoint lists, there is no separate backend.</p><p class="result">Result: an employee finds a free desk for the date they need and books it in SharePoint, with no separate spreadsheets.</p><div><p class="trh">Technical requirements</p><ol class="tr"><li>Filter by date and zone, booked desks are hidden</li><li>"My reservations" and cancelling a booking</li><li>Success, warning and error messages</li><li>HLD, user guide and deployment guide written for it</li></ol></div></div><div class="rv" style="--d:0.10s"><table class="spec kv"><tbody><tr><td>Framework</td><td>SPFx 1.23</td></tr><tr><td>UI</td><td>React · Fluent UI v9</td></tr><tr><td>Data</td><td>Desks and Reservations lists, REST (SPHttpClient)</td></tr><tr><td>Zones</td><td>Open Space, Quiet Zone, Meeting Room</td></tr><tr><td>Backend</td><td>none, SharePoint only</td></tr><tr><td>Status</td><td>personal / learning project</td></tr><tr><td>Code</td><td>private, on request</td></tr></tbody></table></div></div></section><section><h2 class="dim rv"><i></i><span><b>02</b> · Live demo</span><i></i></h2><div class="desk-demo rv" id="deskdemo">
+<div class="dd-js">
+<div class="dd-bar">
+<label>Date<input type="date" id="dd-date"></label>
+<label>Zone<select id="dd-zone"><option value="">All zones</option><option value="Open Space">Open Space</option><option value="Quiet Zone">Quiet Zone</option><option value="Meeting Room">Meeting Room</option></select></label>
+<span class="grow"></span>
+<button type="button" id="dd-view" aria-pressed="false">My reservations</button>
+</div>
+<p class="dd-msg" id="dd-msg" role="status" aria-live="polite"></p>
+<div class="dd-wrap">
+<div><svg class="dd-plan" id="dd-plan" viewBox="0 0 392 168" role="group" xmlns="http://www.w3.org/2000/svg"></svg>
+<ul class="dd-legend"><li><i class="f"></i>free, click a desk</li><li><i class="b"></i>booked or under repair</li><li><i class="m"></i>your booking</li></ul></div>
+<div class="dd-cards" id="dd-cards"></div>
+</div>
+<p class="note">The demo runs only in your browser: desks and bookings are fictional and stored in localStorage. In the real web part the same actions go to SharePoint lists. <button type="button" id="dd-reset">Reset demo</button></p>
+</div>
+<p class="dd-nojs">The demo needs JavaScript.</p>
+</div><h2 class="dim rv"><i></i><span><b>03</b> · Data schema</span><i></i></h2><div class="rv"><div class="fig schema"><svg viewBox="0 0 460 170" role="img" aria-label="Desks and Reservations lists schema" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="20" width="160" height="120" class="d" pathLength="1"/><path d="M10 44h160" class="d" pathLength="1"/><text x="20" y="36">Desks</text>
+<text x="20" y="62">Id</text><text x="20" y="80">Title</text><text x="20" y="98">Zone</text><text x="20" y="116">EquipmentStatus</text>
+<rect x="290" y="20" width="160" height="120" class="d ac" pathLength="1"/><path d="M290 44h160" class="d ac" pathLength="1"/><text x="300" y="36">Reservations</text>
+<text x="300" y="62">Id</text><text x="300" y="80">Desk (lookup) → DeskId</text><text x="300" y="98">ReservedDate</text><text x="300" y="116">ReservedBy → userId</text>
+<path d="M170 58h120" class="d ac" pathLength="1"/><path d="M282 54l8 4-8 4" class="d ac" pathLength="1"/><path d="M176 52v12M182 52v12" class="d" pathLength="1"/>
+<text x="196" y="52" style="font-size:8px">1 : N</text>
+<path d="M10 156h440" class="d th" pathLength="1"/><text x="10" y="168" style="font-size:8px">GET items · POST items · POST X-HTTP-Method: DELETE · SPHttpClient</text></svg></div></div><div class="rv" style="--d:0.05s"><p>Two SharePoint lists. The web part reads desks and reservations over REST (SPHttpClient), hides desks already booked for the chosen date, writes a new booking with a POST request and deletes it on cancel.</p></div><div class="rv"><p class="reqline" style="margin-top:28px">Code is private · on request · <a href="/en/contact/">Get in touch</a></p></div><div class="pn rv"><a href="/en/projects/">← All projects</a><a href="/en/projects/halden/">Next: Halden Intranet →</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Drawing no.</small><span>KHIO-02</span></div><div class="c1" style="--i:1"><small>Lit.</small><span>T</span></div><div class="c1" style="--i:2"><small>Sheet</small><span>2.3</span></div><div class="c1 e" style="--i:3"><small>Total</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Title</small><span class="ttl">Desk Reservation</span></div><div class="c2 e" style="--i:5"><small>Date</small><span>28.10.2026</span></div><div class="c3 rl" style="--i:6"><small>Drawn</small><span>Khudoeshko I.</span></div><div class="c3 e rl" style="--i:7"><small>Email</small><span><a href="mailto:ilyaxyd@icloud.com?subject=Job%20offer%20/%20project%20inquiry&amp;body=Hello%20Ilya%2C%0A%0AI%20am%20writing%20about%3A%20%28job%20/%20project%29%0ATask%3A%20%0ATimeline%3A%20%0AFormat%3A%20%28staff%20/%20project%2C%20office%20/%20remote%29%0A%0ABest%20regards%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Khudoeshko I.</span><span>Project code is private: available on request</span></p></footer>
+</div>
+</div>
+<script src="/script.35b857aa.js"></script>
+<script src="/desk-demo.1419237a.js"></script>
+</body>
+</html>

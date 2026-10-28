@@ -311,3 +311,60 @@ figcaption b { color: var(--amber-ink); font-weight: 700; }
   a.dl, .more { display: none !important; }
   .foot { margin-top: 16px; }
 }
+
+/* ---------- Desk Reservation live demo ---------- */
+.desk-demo { border: 2px solid var(--ink); padding: clamp(14px, 2.4vw, 24px); }
+.desk-demo .dd-js { display: none; }
+.desk-demo.live .dd-js { display: block; }
+.desk-demo.live .dd-nojs { display: none; }
+.dd-bar { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; padding-bottom: 14px; border-bottom: 1px solid var(--faint); }
+.dd-bar label { display: flex; flex-direction: column; gap: 5px; font-family: var(--mono); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.dd-bar input, .dd-bar select { font: 16px var(--mono); color: var(--ink); background: var(--paper); border: 1.5px solid var(--ink); padding: 7px 9px; min-height: 40px; color-scheme: inherit; }
+.dd-bar .grow { flex: 1; }
+.desk-demo button { font: 700 15px var(--mono); color: var(--ink); background: var(--amber-soft); border: 2px solid var(--ink); padding: 8px 14px; min-height: 40px; cursor: pointer; transition: border-color .2s, color .2s; }
+.desk-demo button:hover:not(:disabled) { border-color: var(--amber); color: var(--amber-ink); }
+.desk-demo button:disabled { opacity: .45; cursor: not-allowed; }
+.desk-demo button.sec, .desk-demo #dd-reset { background: transparent; }
+.desk-demo #dd-reset { font-weight: 400; font-size: 13px; border-width: 1px; }
+.desk-demo button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber-ink); }
+.dd-msg { min-height: 1.6em; margin: 12px 0 0; font-family: var(--mono); font-size: 14px; }
+.dd-msg.ok { color: var(--amber-ink); }
+.dd-msg.ok::before { content: "✓ "; }
+.dd-msg.warn::before { content: "! "; font-weight: 700; color: var(--amber-ink); }
+.dd-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(16px, 3vw, 32px); margin-top: 10px; align-items: start; }
+@media (max-width: 860px) { .dd-wrap { grid-template-columns: 1fr; } }
+.dd-plan { width: 100%; height: auto; display: block; }
+.dd-plan .dw { fill: none; stroke: currentColor; stroke-width: 1.6; }
+.dd-plan > text { font-size: 8px; letter-spacing: .08em; fill: var(--muted); }
+.dd-plan .desk rect { fill: var(--paper); stroke: currentColor; stroke-width: 1.3; transition: fill .2s, stroke .2s; }
+.dd-plan .desk text { font-size: 9px; }
+.dd-plan .desk .hz { fill: none; stroke: currentColor; stroke-width: .7; opacity: .5; }
+.dd-plan .desk.free rect { stroke: var(--amber); stroke-width: 2; }
+.dd-plan .desk.free[role="button"] { cursor: pointer; }
+.dd-plan .desk.free[role="button"]:hover rect, .dd-plan .desk.free[role="button"]:focus rect { fill: var(--amber-soft); }
+.dd-plan .desk:focus { outline: none; }
+.dd-plan .desk:focus-visible rect { stroke-width: 3.2; }
+.dd-plan .desk.mine rect { fill: var(--amber); stroke: var(--amber); }
+.dd-plan .desk.mine text { fill: var(--paper); font-weight: 700; }
+.dd-plan .desk.rep text, .dd-plan .desk.busy text { opacity: .6; }
+.dd-plan .desk.off { opacity: .25; }
+.dd-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 10px 0 0; padding: 0; list-style: none; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.dd-legend i { display: inline-block; width: 14px; height: 10px; margin-right: 6px; border: 1.5px solid var(--ink); vertical-align: -1px; }
+.dd-legend .f { border-color: var(--amber); border-width: 2px; }
+.dd-legend .m { background: var(--amber); border-color: var(--amber); }
+.dd-legend .b { background: repeating-linear-gradient(135deg, transparent 0 3px, var(--muted) 3px 4px); }
+.dd-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 12px; align-content: start; }
+.dd-card { border: 1.5px solid var(--ink); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+.dd-card b { font-family: var(--mono); font-size: 17px; }
+.dd-card .z { color: var(--muted); font-size: 15px; }
+.dd-card .s { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.dd-card .s.ok { color: var(--amber-ink); }
+.dd-card button { margin-top: 6px; }
+.dd-empty { grid-column: 1 / -1; color: var(--muted); margin: 0; }
+.desk-demo .note { margin-top: 16px; }
+@media (prefers-reduced-motion: reduce) { .dd-plan .desk rect, .desk-demo button { transition: none; } }
+@media print { .desk-demo .dd-bar, .desk-demo button { display: none; } }
+.desk-demo { margin-bottom: 30px; }
+.fig.schema { padding: 14px; }
+.fig.schema svg { max-width: 720px; margin: 0 auto; }
+.fig.schema + p, .rv:has(> .fig.schema) + .rv p { margin-top: 14px; }
