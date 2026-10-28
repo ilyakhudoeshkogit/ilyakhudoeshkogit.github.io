@@ -4,40 +4,41 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>404 — Илья Худоешко / Ilya Khudoeshko</title>
-<meta name="robots" content="noindex">
 <meta name="description" content="Страница не найдена / Page not found">
-<meta name="color-scheme" content="dark light">
+<meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.9a506172.css">
 <script>
   (function () {
     var d = document.documentElement, t = null;
     try { t = localStorage.getItem('theme'); } catch (e) {}
     d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
-    d.className = 'js';
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
   })();
 </script>
 </head>
 <body>
 <div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="zones" aria-hidden="true"></div>
 <div class="inner">
-  <div class="bar">
-    <a class="who" href="/">ХУДОЕШКО И.О.</a>
-    <button type="button" id="theme" aria-label="Сменить тему / Toggle theme">Тема / Theme</button>
-  </div>
-  <main class="nf">
+  <header class="head min"><a class="who" href="/">ХУДОЕШКО И.О.<small>SharePoint / SPFx</small></a><div class="ctl"><button type="button" id="theme" aria-label="Сменить тему / Toggle theme">Тема / Theme</button></div></header>
+  <main class="nf" id="main">
     <p class="eyebrow">SharePoint / SPFx developer</p>
     <div class="code" aria-hidden="true">4<em>0</em>4</div>
     <h1>Лист не найден</h1>
     <p class="sub" lang="ru">Такой страницы нет. Вернитесь на главную.</p>
-    <h1 lang="en" style="margin-top:28px;font-size:clamp(26px,4vw,40px)">Sheet not found</h1>
+    <h2 lang="en" style="margin-top:28px;font-size:clamp(26px,4vw,40px)">Sheet not found</h2>
     <p class="sub" lang="en">This page does not exist. Go back to the home page.</p>
-    <div class="links"><a href="/">← На главную</a><a href="/en/">← Home (EN)</a></div>
+    <div class="links"><a href="/">← На главную</a><a href="/en/">← Home (EN)</a><a href="/projects/">Проекты</a></div>
   </main>
-  <footer><span>© 2026 Худоешко И.О. / Khudoeshko I.</span><span>404</span></footer>
+  <footer class="foot"><p class="copy"><span>© 2026 Худоешко И.О. / Khudoeshko I.</span><span>404</span></p></footer>
 </div>
 </div>
-<script src="/script.js"></script>
+<script src="/script.35b857aa.js"></script>
 </body>
 </html>
