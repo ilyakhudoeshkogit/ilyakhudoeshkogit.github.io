@@ -368,3 +368,38 @@ figcaption b { color: var(--amber-ink); font-weight: 700; }
 .fig.schema { padding: 14px; }
 .fig.schema svg { max-width: 720px; margin: 0 auto; }
 .fig.schema + p, .rv:has(> .fig.schema) + .rv p { margin-top: 14px; }
+/* Teams Photo Bot demo */
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.bd-wrap { display: grid; grid-template-columns: 1fr; gap: clamp(16px, 3vw, 28px); margin-top: 14px; align-items: start; }
+.bot-demo.json .bd-wrap, .bd-wrap:has(> .bd-pre:not([hidden])) { grid-template-columns: 1.15fr 1fr; }
+@media (max-width: 860px) { .bd-wrap:has(> .bd-pre:not([hidden])) { grid-template-columns: 1fr; } }
+.bd-chat { border: 1.5px solid var(--ink); display: flex; flex-direction: column; min-width: 0; }
+.bd-top { margin: 0; padding: 8px 14px; border-bottom: 1px solid var(--ink); font: 13px var(--mono); letter-spacing: .04em; color: var(--muted); }
+.bd-top b { color: var(--ink); }
+.bd-log { height: 380px; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 12px; background: repeating-linear-gradient(0deg, transparent 0 23px, var(--faint) 23px 24px); }
+.bd-m { max-width: 88%; padding: 8px 12px 10px; border: 1.5px solid var(--ink); background: var(--paper); }
+.bd-m.me { align-self: flex-end; border-color: var(--amber); background: var(--amber-soft); }
+.bd-m p { margin: 0; }
+.bd-h { font: 12px var(--mono); color: var(--muted); margin-bottom: 4px !important; }
+.bd-h b { color: var(--ink); }
+.bd-t { font-size: 16px; line-height: 1.5; overflow-wrap: anywhere; }
+.bd-card { border-top: 1px dashed var(--faint); padding-top: 8px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.bd-ct { font-weight: 700; font-size: 16px; }
+.bd-row { display: flex; gap: 12px; align-items: center; }
+.bd-av { width: 76px; height: 76px; flex: none; }
+.bd-av .fr { fill: none; stroke: var(--ink); stroke-width: 2; }
+.bd-av .hz { stroke: var(--faint); stroke-width: 1; fill: none; }
+.bd-av .fl { fill: var(--paper); stroke: var(--amber); stroke-width: 2.5; }
+.bd-av.ini text { font: 700 30px var(--mono); fill: var(--amber-ink); }
+.bd-info { display: flex; flex-direction: column; font-size: 15px; line-height: 1.4; min-width: 0; }
+.bd-info span { color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+.bd-note { font-size: 14px; color: var(--muted); }
+.bd-trace { font: 11.5px var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+.bd-card button { min-height: 34px !important; padding: 4px 12px !important; font-size: 13px !important; }
+.bd-typing { margin: 0; padding: 4px 14px; font: 13px var(--mono); color: var(--muted); }
+.bd-form { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid var(--ink); }
+.bd-form input { flex: 1; min-width: 0; font: 16px var(--mono); color: var(--ink); background: var(--paper); border: 1.5px solid var(--ink); padding: 7px 9px; min-height: 40px; }
+.bd-quick { margin: 0; padding: 0 14px 12px; font: 13px var(--mono); color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.bd-quick button { min-height: 32px !important; padding: 3px 10px !important; font-size: 13px !important; }
+.bd-pre { margin: 0; border: 1.5px solid var(--ink); padding: 12px 14px; font: 12px/1.5 var(--mono); max-height: 470px; overflow: auto; white-space: pre; min-width: 0; }
+@media (max-width: 480px) { .bd-log { height: 340px; } .bd-m { max-width: 96%; } }
