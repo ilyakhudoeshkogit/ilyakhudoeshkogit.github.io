@@ -1,11 +1,11 @@
-/* Service worker. Build 67f25b3796 is a hash of the whole site, so every release gets a new worker and a new cache.
+/* Service worker. Build 35d0548b93 is a hash of the whole site, so every release gets a new worker and a new cache.
    - hashed css/js/images (file name contains the content hash): cache first, they never change
    - pages (HTML): stale-while-revalidate, the revalidation asks the server with If-None-Match (cache: 'no-cache'),
      so it ignores the 10-minute max-age that GitHub Pages sets
    - everything else (PDF, sitemap, other origins, non-GET, Range): not touched */
-var VERSION = '67f25b3796';
+var VERSION = '35d0548b93';
 var CACHE = 'site-' + VERSION;
-var PRECACHE = ["/", "/en/", "/styles.93c52f26.css", "/script.35b857aa.js", "/favicon.svg"];
+var PRECACHE = ["/", "/en/", "/styles.748c50ae.css", "/script.35b857aa.js", "/favicon.svg"];
 var HASHED = /\.[0-9a-f]{8}\.(css|js|webp|svg|png)$/;
 
 self.addEventListener('install', function (e) {
