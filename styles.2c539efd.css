@@ -496,3 +496,13 @@ pre.code { border: 1.5px solid var(--ink); border-left-width: 4px; padding: 12px
   .head nav { grid-column: 1 / -1; grid-row: 2; border-right: 0; border-top: 1px solid var(--ink); }
 }
 .note p { font-size: 15px; } pre.code code { font-size: 14px; }
+/* back to top: small stamp cell */
+.totop { position: fixed; right: 18px; bottom: 18px; z-index: 40; display: flex; flex-direction: column; align-items: center; min-width: 52px; padding: 6px 8px; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); font: 700 18px/1 var(--mono); text-decoration: none; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
+.totop small { font: 400 10px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.totop.show { opacity: 1; visibility: visible; transform: none; }
+.totop:hover, .totop:focus-visible { border-color: var(--amber); }
+.note-i { position: relative; transition: border-color .2s; }
+.note-i::after { content: ""; position: absolute; left: 0; bottom: -1.5px; height: 3px; width: 100%; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+.note-i:hover::after, .note-i:focus-within::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) { .totop, .note-i::after { transition: none; } }
+@media print { .totop { display: none !important; } }

@@ -38,3 +38,13 @@
   }
 })();
 (function () { var b = document.querySelector('.prog'); if (!b) return; function u() { var h = document.documentElement, m = h.scrollHeight - h.clientHeight; b.style.setProperty('--p', m > 0 ? (h.scrollTop / m).toFixed(3) : 0); } addEventListener('scroll', u, { passive: true }); u(); })();
+(function () {
+  var en = document.documentElement.lang === 'en', b = document.createElement('a');
+  b.href = '#top'; b.className = 'totop'; b.setAttribute('aria-label', en ? 'Back to top' : 'Наверх');
+  b.innerHTML = '<span aria-hidden="true">↑</span><small>' + (en ? 'Top' : 'Наверх') + '</small>';
+  document.body.appendChild(b);
+  var rm = matchMedia('(prefers-reduced-motion: reduce)');
+  function u() { b.classList.toggle('show', scrollY > 700); }
+  addEventListener('scroll', u, { passive: true }); u();
+  b.addEventListener('click', function (e) { e.preventDefault(); scrollTo({ top: 0, behavior: rm.matches ? 'auto' : 'smooth' }); var s = document.querySelector('.skip'); if (s) s.focus({ preventScroll: true }); });
+})();
