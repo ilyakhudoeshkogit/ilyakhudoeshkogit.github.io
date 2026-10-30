@@ -532,3 +532,7 @@ pre.code { border: 1.5px solid var(--ink); border-left-width: 4px; padding: 12px
 .sv-table tbody tr { cursor: pointer; } .sv-table tbody tr:hover { background: var(--amber-soft); }
 .sv-table tbody tr.on { background: var(--amber-soft); box-shadow: inset 3px 0 0 var(--amber); font-weight: 700; }
 @media (max-width: 640px) { .sv-in { grid-template-columns: 1fr; } .sv-out { grid-template-columns: 1fr 1fr; } .sv-c.w { grid-column: 1 / -1; } }
+/* 404 drawing */
+.nf-art { max-width: 520px; margin: 26px 0 18px; }
+.nf-art svg { width: 100%; height: auto; }
+.nf-tb { max-width: 620px; margin-bottom: 8px; }
