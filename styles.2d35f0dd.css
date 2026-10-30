@@ -464,3 +464,13 @@ html[data-theme="dark"] .hx-kv .r { color: #ff7a6b; }
 }
 @keyframes hxb { 0% { background: var(--amber-soft); transform: scale(1.03); } 100% { background: transparent; transform: none; } }
 @keyframes hxw { from { transform: scaleX(0); } }
+/* Notes */
+.notes { display: grid; gap: 18px; }
+.note-i { border: 1.5px solid var(--ink); padding: 16px 18px; }
+.note-i h3 { margin: 6px 0 8px; } .note-i h3 a { color: inherit; }
+.note { max-width: 760px; }
+.note p { line-height: 1.65; }
+.note .nh { font-size: 20px; margin: 30px 0 8px; }
+.note code { font-family: var(--mono); font-size: .92em; }
+pre.code { border: 1.5px solid var(--ink); border-left-width: 4px; padding: 12px 14px; overflow-x: auto; font: 13px/1.55 var(--mono); margin: 14px 0; max-width: 100%; }
+.prog { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: var(--amber); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); z-index: 50; }

@@ -57,6 +57,20 @@
     <lastmod>2026-10-30</lastmod>
   </url>
   <url>
+    <loc>https://ilyakhudoeshkogit.github.io/notes/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/"/>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
+    <loc>https://ilyakhudoeshkogit.github.io/en/notes/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/"/>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
     <loc>https://ilyakhudoeshkogit.github.io/projects/executive-dashboard/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/projects/executive-dashboard/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/projects/executive-dashboard/"/>
@@ -110,6 +124,34 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/projects/teams-photo-bot/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/projects/teams-photo-bot/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/projects/teams-photo-bot/"/>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
+    <loc>https://ilyakhudoeshkogit.github.io/notes/pnpjs-service-spfx/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/pnpjs-service-spfx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/pnpjs-service-spfx/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/pnpjs-service-spfx/"/>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
+    <loc>https://ilyakhudoeshkogit.github.io/en/notes/pnpjs-service-spfx/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/pnpjs-service-spfx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/pnpjs-service-spfx/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/pnpjs-service-spfx/"/>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
+    <loc>https://ilyakhudoeshkogit.github.io/notes/spfx-rest-two-lists/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/spfx-rest-two-lists/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/spfx-rest-two-lists/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/spfx-rest-two-lists/"/>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
+    <loc>https://ilyakhudoeshkogit.github.io/en/notes/spfx-rest-two-lists/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/spfx-rest-two-lists/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/spfx-rest-two-lists/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/spfx-rest-two-lists/"/>
     <lastmod>2026-10-30</lastmod>
   </url>
 </urlset>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desk booking on two SharePoint lists | Ilya Khudoeshko</title>
+<meta name="description" content="The Desk Reservation data model: Desks and Reservations lists, a 1:N link, reads and writes via SPHttpClient with no separate backend.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/en/notes/spfx-rest-two-lists/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/spfx-rest-two-lists/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/spfx-rest-two-lists/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/spfx-rest-two-lists/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ilya Khudoeshko">
+<meta property="og:title" content="Desk booking on two SharePoint lists | Ilya Khudoeshko">
+<meta property="og:description" content="The Desk Reservation data model: Desks and Reservations lists, a 1:N link, reads and writes via SPHttpClient with no separate backend.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/en/notes/spfx-rest-two-lists/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Desk booking on two SharePoint lists | Ilya Khudoeshko">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Desk booking on two SharePoint lists | Ilya Khudoeshko">
+<meta name="twitter:description" content="The Desk Reservation data model: Desks and Reservations lists, a 1:N link, reads and writes via SPHttpClient with no separate backend.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Ilya Khudoeshko">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.2d35f0dd.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Ilya Khudoeshko","url":"https://ilyakhudoeshkogit.github.io/en/","jobTitle":"SharePoint / SPFx developer","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image-en.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol","https://www.linkedin.com/in/ilya-khudoeshko/"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Ilya Khudoeshko","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"Article","url":"https://ilyakhudoeshkogit.github.io/en/notes/spfx-rest-two-lists/","name":"Desk booking on two SharePoint lists | Ilya Khudoeshko","inLanguage":"en","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"},"headline":"Desk booking on two SharePoint lists","datePublished":"2026-10-30","author":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"description":"The Desk Reservation data model: Desks and Reservations lists, a 1:N link, reads and writes via SPHttpClient with no separate backend."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ilyakhudoeshkogit.github.io/en/"},{"@type":"ListItem","position":2,"name":"Notes","item":"https://ilyakhudoeshkogit.github.io/en/notes/"},{"@type":"ListItem","position":3,"name":"Desk booking on two SharePoint lists","item":"https://ilyakhudoeshkogit.github.io/en/notes/spfx-rest-two-lists/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/en/">KHUDOESHKO I.<small>SharePoint / SPFx</small></a><nav aria-label="Site sections"><a href="/en/"><small>Sheet 1</small>Home</a><a href="/en/projects/"><small>Sheet 2</small>Projects</a><a href="/en/about/"><small>Sheet 3</small>About</a><a href="/en/contact/"><small>Sheet 4</small>Contact</a><a href="/en/notes/" class="on"><small>Sheet 5</small>Notes</a></nav><div class="ctl"><a class="langbtn" href="/notes/spfx-rest-two-lists/" hreflang="ru" lang="ru" aria-label="Русская версия">RU</a><button type="button" id="theme" aria-label="Toggle theme">Theme</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/en/">Home</a> / <a href="/en/notes/">Notes</a></p></div><div class="rv" style="--d:0.06s"><h1>Desk booking on two SharePoint lists</h1></div><div class="rv" style="--d:0.12s"><p class="lead">The Desk Reservation data model: Desks and Reservations lists, a 1:N link, reads and writes via SPHttpClient with no separate backend.</p></div></header><section><div class="prog" aria-hidden="true"></div><article class="note"><div class="rv"><p>The Desk Reservation web part needs no server of its own. Two lists are enough: <code>Desks</code> (desks: number, zone) and <code>Reservations</code> (who, which desk, which date). One desk can have many bookings on different dates.</p></div><div class="rv"><div class="fig schema"><svg viewBox="0 0 460 170" role="img" aria-label="Desks and Reservations lists schema" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="20" width="160" height="120" class="d" pathLength="1"/><path d="M10 44h160" class="d" pathLength="1"/><text x="20" y="36">Desks</text>
+<text x="20" y="62">Id</text><text x="20" y="80">Title</text><text x="20" y="98">Zone</text><text x="20" y="116">EquipmentStatus</text>
+<rect x="290" y="20" width="160" height="120" class="d ac" pathLength="1"/><path d="M290 44h160" class="d ac" pathLength="1"/><text x="300" y="36">Reservations</text>
+<text x="300" y="62">Id</text><text x="300" y="80">Desk (lookup) → DeskId</text><text x="300" y="98">ReservedDate</text><text x="300" y="116">ReservedBy → userId</text>
+<path d="M170 58h120" class="d ac" pathLength="1"/><path d="M282 54l8 4-8 4" class="d ac" pathLength="1"/><path d="M176 52v12M182 52v12" class="d" pathLength="1"/>
+<text x="196" y="52" style="font-size:8px">1 : N</text>
+<path d="M10 156h440" class="d th" pathLength="1"/><text x="10" y="168" style="font-size:8px">GET items · POST items · POST X-HTTP-Method: DELETE · SPHttpClient</text></svg></div></div><h2 class="nh rv">Free desks for a date</h2><div class="rv"><p>The web part reads desks and bookings for the chosen date, then hides the booked ones. These are two GET requests via <code>SPHttpClient</code>.</p></div><div class="rv"><pre class="code"><code>const api = `${siteUrl}/_api/web/lists/getbytitle(&#x27;Reservations&#x27;)/items`;
+const res = await spHttpClient.get(
+  `${api}?$select=Id,DeskId,ReservedDate`,
+  SPHttpClient.configurations.v1);
+const booked = new Set((await res.json()).value
+  .filter(r =&gt; r.ReservedDate.slice(0, 10) === day)
+  .map(r =&gt; r.DeskId));
+const free = desks.filter(d =&gt; !booked.has(d.Id));</code></pre></div><h2 class="nh rv">Booking and cancelling</h2><div class="rv"><p>A new booking is a POST to <code>Reservations</code>, cancelling deletes the item. You can try the same logic in the <a href="/en/projects/desk-reservation/">live demo</a>.</p></div></article><div class="pn rv"><a href="/en/notes/">← All notes</a><a href="/en/contact/">Get in touch</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Drawing no.</small><span>KHIO-05.2</span></div><div class="c1" style="--i:1"><small>Lit.</small><span>T</span></div><div class="c1" style="--i:2"><small>Sheet</small><span>5.2</span></div><div class="c1 e" style="--i:3"><small>Total</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Title</small><span class="ttl">Desk booking on two SharePoint lists</span></div><div class="c2 e" style="--i:5"><small>Date</small><span>30.10.2026</span></div><div class="c3 rl" style="--i:6"><small>Drawn</small><span>Khudoeshko I.</span></div><div class="c3 e rl" style="--i:7"><small>Email</small><span><a href="mailto:ilyaxyd@icloud.com?subject=Job%20offer%20/%20project%20inquiry&amp;body=Hello%20Ilya%2C%0A%0AI%20am%20writing%20about%3A%20%28job%20/%20project%29%0ATask%3A%20%0ATimeline%3A%20%0AFormat%3A%20%28staff%20/%20project%2C%20office%20/%20remote%29%0A%0ABest%20regards%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Khudoeshko I.</span><span>Project code is private: available on request</span></p></footer>
+</div>
+</div>
+<script src="/script.a2c51f7c.js"></script>
+</body>
+</html>
