@@ -196,4 +196,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/provisioning-sharepoint-lists/"/>
     <lastmod>2026-10-30</lastmod>
   </url>
+  <url>
+    <loc>https://ilyakhudoeshkogit.github.io/notes/spfx-versions/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/spfx-versions/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/spfx-versions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/spfx-versions/"/>
+    <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
+    <loc>https://ilyakhudoeshkogit.github.io/en/notes/spfx-versions/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/spfx-versions/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/spfx-versions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/spfx-versions/"/>
+    <lastmod>2026-10-30</lastmod>
+  </url>
 </urlset>
