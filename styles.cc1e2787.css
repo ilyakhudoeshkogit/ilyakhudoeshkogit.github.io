@@ -488,3 +488,10 @@ pre.code { border: 1.5px solid var(--ink); border-left-width: 4px; padding: 12px
   .cv h2 { break-after: avoid; } .cv li { break-inside: avoid; }
 }
 .cv button.dl { font: inherit; cursor: pointer; color: var(--ink); background: none; border: 1.5px solid var(--ink); padding: 10px 14px; }
+/* 5-sheet nav: second row below desktop width */
+.head nav a { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 1240px) {
+  .head { grid-template-columns: 1fr auto; }
+  .who { border-right: 0; }
+  .head nav { grid-column: 1 / -1; grid-row: 2; border-right: 0; border-top: 1px solid var(--ink); }
+}

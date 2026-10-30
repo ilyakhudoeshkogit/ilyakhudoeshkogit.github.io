@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Провижининг списков SharePoint на PnP.PowerShell | Илья Худоешко</title>
+<meta name="description" content="Как скрипт развёртывания портала Halden создаёт списки и поля из JSON и не ломается при повторном запуске.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/notes/provisioning-sharepoint-lists/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/provisioning-sharepoint-lists/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/provisioning-sharepoint-lists/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/provisioning-sharepoint-lists/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Илья Худоешко">
+<meta property="og:title" content="Провижининг списков SharePoint на PnP.PowerShell | Илья Худоешко">
+<meta property="og:description" content="Как скрипт развёртывания портала Halden создаёт списки и поля из JSON и не ломается при повторном запуске.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/notes/provisioning-sharepoint-lists/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Провижининг списков SharePoint на PnP.PowerShell | Илья Худоешко">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Провижининг списков SharePoint на PnP.PowerShell | Илья Худоешко">
+<meta name="twitter:description" content="Как скрипт развёртывания портала Halden создаёт списки и поля из JSON и не ломается при повторном запуске.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Илья Худоешко">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.cc1e2787.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Илья Худоешко","url":"https://ilyakhudoeshkogit.github.io/","jobTitle":"SharePoint / SPFx разработчик","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol","https://www.linkedin.com/in/ilya-khudoeshko/"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Илья Худоешко","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"Article","url":"https://ilyakhudoeshkogit.github.io/notes/provisioning-sharepoint-lists/","name":"Провижининг списков SharePoint на PnP.PowerShell | Илья Худоешко","inLanguage":"ru","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"},"headline":"Провижининг списков SharePoint на PnP.PowerShell","datePublished":"2026-10-30","author":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"description":"Как скрипт развёртывания портала Halden создаёт списки и поля из JSON и не ломается при повторном запуске."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://ilyakhudoeshkogit.github.io/"},{"@type":"ListItem","position":2,"name":"Заметки","item":"https://ilyakhudoeshkogit.github.io/notes/"},{"@type":"ListItem","position":3,"name":"Провижининг списков SharePoint на PnP.PowerShell","item":"https://ilyakhudoeshkogit.github.io/notes/provisioning-sharepoint-lists/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">К содержимому</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/">ХУДОЕШКО И.О.<small>SharePoint / SPFx</small></a><nav aria-label="Разделы сайта"><a href="/"><small>Лист 1</small>Главная</a><a href="/projects/"><small>Лист 2</small>Проекты</a><a href="/about/"><small>Лист 3</small>Обо мне</a><a href="/contact/"><small>Лист 4</small>Контакты</a><a href="/notes/" class="on"><small>Лист 5</small>Заметки</a></nav><div class="ctl"><a class="langbtn" href="/en/notes/provisioning-sharepoint-lists/" hreflang="en" lang="en" aria-label="English version">EN</a><button type="button" id="theme" aria-label="Сменить тему">Тема</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/">Главная</a> / <a href="/notes/">Заметки</a></p></div><div class="rv" style="--d:0.06s"><h1>Провижининг списков SharePoint на PnP.PowerShell</h1></div><div class="rv" style="--d:0.12s"><p class="lead">Как скрипт развёртывания портала Halden создаёт списки и поля из JSON и не ломается при повторном запуске.</p></div></header><section><div class="prog" aria-hidden="true"></div><article class="note"><div class="rv"><p>Портал Halden разворачивается одним скриптом <code>Provision-Halden.ps1</code>. Описание списков лежит отдельно, в <code>portal-lists.json</code>, а скрипт только читает его и приводит сайт к нужному виду. Главное требование: запуск можно повторить сколько угодно раз.</p></div><h2 class="nh rv">Описание списка</h2><div class="rv"><pre class="code"><code>{
+  &quot;key&quot;: &quot;people&quot;,
+  &quot;title&quot;: &quot;Halden People&quot;,
+  &quot;url&quot;: &quot;Lists/HaldenPeople&quot;,
+  &quot;library&quot;: false,
+  &quot;fields&quot;: [
+    { &quot;name&quot;: &quot;HaldenJobTitle&quot;, &quot;display&quot;: &quot;Job title&quot;, &quot;type&quot;: &quot;Text&quot; },
+    { &quot;name&quot;: &quot;HaldenDepartment&quot;, &quot;display&quot;: &quot;Department&quot;, &quot;type&quot;: &quot;Choice&quot;,
+      &quot;choices&quot;: [&quot;Executive&quot;, &quot;HR&quot;, &quot;Finance&quot;, &quot;IT&quot;, &quot;Sales&quot;, &quot;PMO&quot;, &quot;Marketing&quot;] }
+  ]
+}</code></pre></div><div class="rv"><div class="fig schema"><svg viewBox="0 0 450 120" role="img" aria-label="lists.json → Provision.ps1 → SharePoint" xmlns="http://www.w3.org/2000/svg"><g class="ln"><rect x="10" y="40" width="120" height="40" class="d" pathLength="1"/><rect x="160" y="40" width="120" height="40" class="d" pathLength="1"/><rect x="310" y="40" width="120" height="40" class="d" pathLength="1"/><path d="M130 60H160" class="d" pathLength="1"/><path d="M280 60H310" class="d" pathLength="1"/></g><g class="tx"><text x="70" y="64" text-anchor="middle">lists.json</text><text x="220" y="64" text-anchor="middle">Provision.ps1</text><text x="370" y="64" text-anchor="middle">SharePoint</text><text x="145" y="52" text-anchor="middle">read</text><text x="295" y="52" text-anchor="middle">PnP</text></g></svg></div></div><h2 class="nh rv">Создать, только если нет</h2><div class="rv"><p>Список создаётся, только если <code>Get-PnPList</code> его не нашёл. Затем недостающие поля добавляются по одному: если поле уже есть на сайте, оно подключается к списку, иначе создаётся из XML.</p></div><div class="rv"><pre class="code"><code>$list = Get-PnPList -Identity $def.title -ErrorAction SilentlyContinue
+if (-not $list) {
+  $template = if ($def.library) { &#x27;DocumentLibrary&#x27; } else { &#x27;GenericList&#x27; }
+  $list = New-PnPList -Title $def.title -Url $leafUrl -Template $template
+}
+Ensure-ListFields -ListTitle $def.title -Fields $def.fields</code></pre></div><div class="rv"><pre class="code"><code>function Ensure-ListFields {
+  param([string] $ListTitle, $Fields)
+  $current = @(Get-PnPField -List $ListTitle | ForEach-Object { $_.InternalName })
+  foreach ($def in $Fields) {
+    if ($current -contains [string] $def.name) { continue }
+    $siteField = Get-PnPField -Identity ([string] $def.name) -ErrorAction SilentlyContinue
+    if ($siteField) { Add-PnPField -List $ListTitle -Field ([string] $def.name) | Out-Null }
+    else { Add-PnPFieldFromXml -List $ListTitle -FieldXml (Get-FieldXml -Def $def) | Out-Null }
+  }
+}</code></pre></div><h2 class="nh rv">Поле из описания</h2><div class="rv"><p>Функция <code>Get-FieldXml</code> превращает запись из JSON в Field XML по типу: Choice, DateTime, Note, Boolean, Number или Text. Подписи экранируются, чтобы кавычки и амперсанды не сломали XML.</p></div><div class="rv"><pre class="code"><code>&#x27;Choice&#x27; {
+  $choices = ($Def.choices | ForEach-Object {
+    &#x27;&lt;CHOICE&gt;&#x27; + [System.Security.SecurityElement]::Escape([string] $_) + &#x27;&lt;/CHOICE&gt;&#x27; }) -join &#x27;&#x27;
+  return &quot;&lt;Field Type=&#x27;Choice&#x27; Name=&#x27;$name&#x27; StaticName=&#x27;$name&#x27; DisplayName=&#x27;$display&#x27; Format=&#x27;Dropdown&#x27;&gt;&lt;CHOICES&gt;$choices&lt;/CHOICES&gt;&lt;/Field&gt;&quot;
+}</code></pre></div><div class="rv"><p>Сам портал и его экраны: <a href="/projects/halden/">страница Halden</a>.</p></div></article><div class="pn rv"><a href="/notes/">← Все заметки</a><a href="/contact/">Написать</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Обозначение</small><span>ХИО-05.4</span></div><div class="c1" style="--i:1"><small>Лит.</small><span>У</span></div><div class="c1" style="--i:2"><small>Лист</small><span>5.4</span></div><div class="c1 e" style="--i:3"><small>Листов</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Наименование</small><span class="ttl">Провижининг списков SharePoint на PnP.PowerShell</span></div><div class="c2 e" style="--i:5"><small>Дата</small><span>30.10.2026</span></div><div class="c3 rl" style="--i:6"><small>Разраб.</small><span>Худоешко И.О.</span></div><div class="c3 e rl" style="--i:7"><small>Почта</small><span><a href="mailto:ilyaxyd@icloud.com?subject=%D0%9F%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5%20/%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7&amp;body=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%98%D0%BB%D1%8C%D1%8F%21%0A%0A%D0%9F%D0%B8%D1%88%D1%83%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%3A%20%28%D0%B2%D0%B0%D0%BA%D0%B0%D0%BD%D1%81%D0%B8%D1%8F%20/%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%29%0A%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%3A%20%0A%D0%A1%D1%80%D0%BE%D0%BA%D0%B8%3A%20%0A%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%3A%20%28%D1%88%D1%82%D0%B0%D1%82%20/%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%2C%20%D0%BE%D1%84%D0%B8%D1%81%20/%20%D1%83%D0%B4%D0%B0%D0%BB%D1%91%D0%BD%D0%BD%D0%BE%29%0A%0A%D0%A1%20%D1%83%D0%B2%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Худоешко И.О.</span><span>Код проектов закрыт: покажу по запросу</span></p></footer>
+</div>
+</div>
+<script src="/script.a2c51f7c.js"></script>
+</body>
+</html>

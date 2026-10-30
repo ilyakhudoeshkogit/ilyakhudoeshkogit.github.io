@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluent UI v9 in an SPFx web part | Ilya Khudoeshko</title>
+<meta name="description" content="How Fluent UI v9 is wired into Executive Dashboard: FluentProvider with a theme, TabList tabs, cards and a loading spinner.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/en/notes/fluent-ui-v9-spfx/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/fluent-ui-v9-spfx/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/fluent-ui-v9-spfx/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/fluent-ui-v9-spfx/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ilya Khudoeshko">
+<meta property="og:title" content="Fluent UI v9 in an SPFx web part | Ilya Khudoeshko">
+<meta property="og:description" content="How Fluent UI v9 is wired into Executive Dashboard: FluentProvider with a theme, TabList tabs, cards and a loading spinner.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/en/notes/fluent-ui-v9-spfx/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fluent UI v9 in an SPFx web part | Ilya Khudoeshko">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fluent UI v9 in an SPFx web part | Ilya Khudoeshko">
+<meta name="twitter:description" content="How Fluent UI v9 is wired into Executive Dashboard: FluentProvider with a theme, TabList tabs, cards and a loading spinner.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Ilya Khudoeshko">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.cc1e2787.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Ilya Khudoeshko","url":"https://ilyakhudoeshkogit.github.io/en/","jobTitle":"SharePoint / SPFx developer","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image-en.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol","https://www.linkedin.com/in/ilya-khudoeshko/"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Ilya Khudoeshko","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"Article","url":"https://ilyakhudoeshkogit.github.io/en/notes/fluent-ui-v9-spfx/","name":"Fluent UI v9 in an SPFx web part | Ilya Khudoeshko","inLanguage":"en","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"},"headline":"Fluent UI v9 in an SPFx web part","datePublished":"2026-10-30","author":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"description":"How Fluent UI v9 is wired into Executive Dashboard: FluentProvider with a theme, TabList tabs, cards and a loading spinner."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ilyakhudoeshkogit.github.io/en/"},{"@type":"ListItem","position":2,"name":"Notes","item":"https://ilyakhudoeshkogit.github.io/en/notes/"},{"@type":"ListItem","position":3,"name":"Fluent UI v9 in an SPFx web part","item":"https://ilyakhudoeshkogit.github.io/en/notes/fluent-ui-v9-spfx/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/en/">KHUDOESHKO I.<small>SharePoint / SPFx</small></a><nav aria-label="Site sections"><a href="/en/"><small>Sheet 1</small>Home</a><a href="/en/projects/"><small>Sheet 2</small>Projects</a><a href="/en/about/"><small>Sheet 3</small>About</a><a href="/en/contact/"><small>Sheet 4</small>Contact</a><a href="/en/notes/" class="on"><small>Sheet 5</small>Notes</a></nav><div class="ctl"><a class="langbtn" href="/notes/fluent-ui-v9-spfx/" hreflang="ru" lang="ru" aria-label="Русская версия">RU</a><button type="button" id="theme" aria-label="Toggle theme">Theme</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/en/">Home</a> / <a href="/en/notes/">Notes</a></p></div><div class="rv" style="--d:0.06s"><h1>Fluent UI v9 in an SPFx web part</h1></div><div class="rv" style="--d:0.12s"><p class="lead">How Fluent UI v9 is wired into Executive Dashboard: FluentProvider with a theme, TabList tabs, cards and a loading spinner.</p></div></header><section><div class="prog" aria-hidden="true"></div><article class="note"><div class="rv"><p>SPFx 1.23 ships with Fluent UI v8 (<code>@fluentui/react</code>). For Executive Dashboard I took v9, the <code>@fluentui/react-components</code> package: its styles come from theme tokens. Both versions live fine in one package.json.</p></div><h2 class="nh rv">The theme provider</h2><div class="rv"><p>v9 components take colours and fonts from <code>FluentProvider</code>. I put it once, at the root of the web part. Without it buttons and cards stay unstyled.</p></div><div class="rv"><pre class="code"><code>import {
+  FluentProvider, webLightTheme, TabList, Tab,
+  Card, Text, Spinner, SelectTabEventHandler
+} from &#x27;@fluentui/react-components&#x27;;
+
+return (
+  &lt;FluentProvider theme={webLightTheme}&gt;
+    ...
+  &lt;/FluentProvider&gt;
+);</code></pre></div><div class="rv"><div class="fig schema"><svg viewBox="0 0 450 120" role="img" aria-label="WebPart → FluentProvider → TabList · Card" xmlns="http://www.w3.org/2000/svg"><g class="ln"><rect x="10" y="40" width="120" height="40" class="d" pathLength="1"/><rect x="160" y="40" width="120" height="40" class="d" pathLength="1"/><rect x="310" y="40" width="120" height="40" class="d" pathLength="1"/><path d="M130 60H160" class="d" pathLength="1"/><path d="M280 60H310" class="d" pathLength="1"/></g><g class="tx"><text x="70" y="64" text-anchor="middle">WebPart</text><text x="220" y="64" text-anchor="middle">FluentProvider</text><text x="370" y="64" text-anchor="middle">TabList · Card</text><text x="145" y="52" text-anchor="middle">render</text><text x="295" y="52" text-anchor="middle">theme</text></g></svg></div></div><h2 class="nh rv">Tabs</h2><div class="rv"><p>Section navigation is a <code>TabList</code>. Each tab label shows the item count, and the selected tab is kept in React state.</p></div><div class="rv"><pre class="code"><code>const handleTabSelect: SelectTabEventHandler = (event, data): void =&gt; {
+  setSelectedTab(String(data.value));
+};
+
+&lt;TabList selectedValue={selectedTab} onTabSelect={handleTabSelect}&gt;
+  &lt;Tab value=&quot;overview&quot;&gt;Overview&lt;/Tab&gt;
+  &lt;Tab value=&quot;approvals&quot;&gt;My Approvals ({approvals.length})&lt;/Tab&gt;
+  &lt;Tab value=&quot;projects&quot;&gt;Projects ({projects.length})&lt;/Tab&gt;
+  &lt;Tab value=&quot;documents&quot;&gt;Documents ({documents.length})&lt;/Tab&gt;
+&lt;/TabList&gt;</code></pre></div><h2 class="nh rv">Loading</h2><div class="rv"><p>While the service reads the lists, a <code>&lt;Spinner label="Loading dashboard data..." /&gt;</code> is shown instead of the tabs, then <code>Card</code> components with <code>Text</code>. See the <a href="/en/projects/executive-dashboard/">Executive Dashboard</a> screenshots.</p></div></article><div class="pn rv"><a href="/en/notes/">← All notes</a><a href="/en/contact/">Get in touch</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Drawing no.</small><span>KHIO-05.3</span></div><div class="c1" style="--i:1"><small>Lit.</small><span>T</span></div><div class="c1" style="--i:2"><small>Sheet</small><span>5.3</span></div><div class="c1 e" style="--i:3"><small>Total</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Title</small><span class="ttl">Fluent UI v9 in an SPFx web part</span></div><div class="c2 e" style="--i:5"><small>Date</small><span>30.10.2026</span></div><div class="c3 rl" style="--i:6"><small>Drawn</small><span>Khudoeshko I.</span></div><div class="c3 e rl" style="--i:7"><small>Email</small><span><a href="mailto:ilyaxyd@icloud.com?subject=Job%20offer%20/%20project%20inquiry&amp;body=Hello%20Ilya%2C%0A%0AI%20am%20writing%20about%3A%20%28job%20/%20project%29%0ATask%3A%20%0ATimeline%3A%20%0AFormat%3A%20%28staff%20/%20project%2C%20office%20/%20remote%29%0A%0ABest%20regards%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Khudoeshko I.</span><span>Project code is private: available on request</span></p></footer>
+</div>
+</div>
+<script src="/script.a2c51f7c.js"></script>
+</body>
+</html>
