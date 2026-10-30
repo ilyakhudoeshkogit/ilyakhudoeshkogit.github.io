@@ -471,8 +471,8 @@ html[data-theme="dark"] .hx-kv .r { color: #ff7a6b; }
 .note { max-width: 760px; }
 .note p { line-height: 1.65; }
 .note .nh { font-size: 20px; margin: 30px 0 8px; }
-.note code { font-family: var(--mono); font-size: .92em; }
-pre.code { border: 1.5px solid var(--ink); border-left-width: 4px; padding: 12px 14px; overflow-x: auto; font: 13px/1.55 var(--mono); margin: 14px 0; max-width: 100%; }
+.note code { font-family: var(--mono); font-size: 1em; }
+pre.code { border: 1.5px solid var(--ink); border-left-width: 4px; padding: 12px 14px; overflow-x: auto; font: 14px/1.55 var(--mono); margin: 14px 0; max-width: 100%; }
 .prog { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: var(--amber); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); z-index: 50; }
 @media (max-width: 480px) { .head nav a { padding: 6px 4px 8px; font-size: 12px; } .head nav small { font-size: 9px; letter-spacing: .02em; } }
 /* CV */
@@ -495,3 +495,4 @@ pre.code { border: 1.5px solid var(--ink); border-left-width: 4px; padding: 12px
   .who { border-right: 0; }
   .head nav { grid-column: 1 / -1; grid-row: 2; border-right: 0; border-top: 1px solid var(--ink); }
 }
+.note p { font-size: 15px; } pre.code code { font-size: 14px; }
