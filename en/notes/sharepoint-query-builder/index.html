@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SharePoint list query builder: REST, PnPjs and Graph | Ilya Khudoeshko</title>
+<meta name="description" content="Fill in the list, fields and conditions and get the same query three ways: a REST URL, a PnPjs chain and a Microsoft Graph request, plus hints about $expand, the 5000-item threshold and indexes.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-query-builder/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/sharepoint-query-builder/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-query-builder/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/sharepoint-query-builder/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ilya Khudoeshko">
+<meta property="og:title" content="SharePoint list query builder: REST, PnPjs and Graph | Ilya Khudoeshko">
+<meta property="og:description" content="Fill in the list, fields and conditions and get the same query three ways: a REST URL, a PnPjs chain and a Microsoft Graph request, plus hints about $expand, the 5000-item threshold and indexes.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-query-builder/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SharePoint list query builder: REST, PnPjs and Graph | Ilya Khudoeshko">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SharePoint list query builder: REST, PnPjs and Graph | Ilya Khudoeshko">
+<meta name="twitter:description" content="Fill in the list, fields and conditions and get the same query three ways: a REST URL, a PnPjs chain and a Microsoft Graph request, plus hints about $expand, the 5000-item threshold and indexes.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Ilya Khudoeshko">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.88445d70.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Ilya Khudoeshko","url":"https://ilyakhudoeshkogit.github.io/en/","jobTitle":"SharePoint / SPFx developer","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image-en.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol","https://www.linkedin.com/in/ilya-khudoeshko/"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Ilya Khudoeshko","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"Article","url":"https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-query-builder/","name":"SharePoint list query builder: REST, PnPjs and Graph | Ilya Khudoeshko","inLanguage":"en","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"},"headline":"SharePoint list query builder: REST, PnPjs and Graph","datePublished":"2026-10-31","author":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"description":"Fill in the list, fields and conditions and get the same query three ways: a REST URL, a PnPjs chain and a Microsoft Graph request, plus hints about $expand, the 5000-item threshold and indexes."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ilyakhudoeshkogit.github.io/en/"},{"@type":"ListItem","position":2,"name":"Notes","item":"https://ilyakhudoeshkogit.github.io/en/notes/"},{"@type":"ListItem","position":3,"name":"SharePoint list query builder: REST, PnPjs and Graph","item":"https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-query-builder/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/en/">KHUDOESHKO I.<small>SharePoint / SPFx</small></a><nav aria-label="Site sections"><a href="/en/"><small>Sheet 1</small>Home</a><a href="/en/projects/"><small>Sheet 2</small>Projects</a><a href="/en/about/"><small>Sheet 3</small>About</a><a href="/en/contact/"><small>Sheet 4</small>Contact</a><a href="/en/notes/" class="on"><small>Sheet 5</small>Notes</a></nav><div class="ctl"><a class="langbtn" href="/notes/sharepoint-query-builder/" hreflang="ru" lang="ru" aria-label="Русская версия">RU</a><button type="button" id="theme" aria-label="Toggle theme">Theme</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/en/">Home</a> / <a href="/en/notes/">Notes</a></p></div><div class="rv" style="--d:0.06s"><h1>SharePoint list query builder: REST, PnPjs and Graph</h1></div><div class="rv" style="--d:0.12s"><p class="lead">Fill in the list, fields and conditions and get the same query three ways: a REST URL, a PnPjs chain and a Microsoft Graph request, plus hints about $expand, the 5000-item threshold and indexes.</p></div></header><section><div class="prog" aria-hidden="true"></div><article class="note"><div class="rv"><p>I write the same list query as a URL for <code>SPHttpClient</code>, as a PnPjs chain, or for Microsoft Graph. The syntax differs a little each time and the mistakes are always the same: a missing <code>$expand</code> on a lookup field, an unescaped apostrophe, a date without <code>datetime</code>. So I built a builder that writes all three at once and points out where you will trip.</p></div><div class="rv"><div class="spfxv spq" id="spq"><p class="q-presets">Example: <button type="button" class="q-pre" data-preset="approvals">Approvals (Executive Dashboard)</button> <button type="button" class="q-pre" data-preset="reservations">Bookings for a date (Desk Reservation)</button> <button type="button" class="q-pre" data-preset="projects">Large projects</button></p><div class="sv-in"><label>List<input id="q-list" type="text" spellcheck="false" autocomplete="off"></label><label>$select<input id="q-select" type="text" spellcheck="false" autocomplete="off"></label></div><fieldset class="q-fs"><legend>$filter <select id="q-join" aria-label="and/or"><option value="and">and</option><option value="or">or</option></select></legend><div id="q-conds"></div><button type="button" id="q-add" class="q-pre">+ condition</button></fieldset><div class="sv-in q-in3"><label>$orderby<input id="q-order" type="text" spellcheck="false" autocomplete="off"></label><label>Direction<select id="q-dir"><option value="asc">asc</option><option value="desc">desc</option></select></label><label>$top<input id="q-top" type="number" min="0" step="1"></label></div><div class="q-out" aria-live="polite"><noscript>The builder needs JavaScript.</noscript></div></div></div><h2 class="nh rv">How to read the hints</h2><div class="rv"><p>A field with a slash, such as <code>AssignedTo/Title</code>, belongs to the linked item: the builder adds <code>AssignedTo</code> to <code>$expand</code> on its own. Graph does not expand these, it only returns <code>AssignedToLookupId</code>. If a list has more than 5000 items, index the filter and sort columns up front, not after the first production error.</p></div><div class="rv"><p>The examples come from my projects: <a href="/en/notes/pnpjs-service-spfx/">the PnPjs service in Executive Dashboard</a> and <a href="/en/notes/spfx-rest-two-lists/">bookings on two lists</a>. The builder runs only in the browser and sends nothing anywhere.</p></div></article><div class="pn rv"><a href="/en/notes/">← All notes</a><a href="/en/contact/">Get in touch</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Drawing no.</small><span>KHIO-05.6</span></div><div class="c1" style="--i:1"><small>Lit.</small><span>T</span></div><div class="c1" style="--i:2"><small>Sheet</small><span>5.6</span></div><div class="c1 e" style="--i:3"><small>Total</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Title</small><span class="ttl">SharePoint list query builder: REST, PnPjs and Graph</span></div><div class="c2 e" style="--i:5"><small>Date</small><span>31.10.2026</span></div><div class="c3 rl" style="--i:6"><small>Drawn</small><span>Khudoeshko I.</span></div><div class="c3 e rl" style="--i:7"><small>Email</small><span><a href="mailto:ilyaxyd@icloud.com?subject=Job%20offer%20/%20project%20inquiry&amp;body=Hello%20Ilya%2C%0A%0AI%20am%20writing%20about%3A%20%28job%20/%20project%29%0ATask%3A%20%0ATimeline%3A%20%0AFormat%3A%20%28staff%20/%20project%2C%20office%20/%20remote%29%0A%0ABest%20regards%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Khudoeshko I.</span><span>Project code is private: available on request</span></p></footer>
+</div>
+</div>
+<script src="/script.552efde0.js"></script>
+<script src="/query-tool.da9f88eb.js"></script>
+</body>
+</html>
