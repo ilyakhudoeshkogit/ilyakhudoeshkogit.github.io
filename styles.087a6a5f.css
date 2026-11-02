@@ -567,6 +567,18 @@ pre.code { border: 1.5px solid var(--ink); border-left-width: 4px; padding: 12px
 .c-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--amber); opacity: .55; transition: width .3s; }
 .c-bt { position: relative; padding: 0 6px; line-height: 22px; color: var(--ink); }
 @media (max-width: 640px) { .c-rule { grid-template-columns: minmax(0,1fr) minmax(0,1fr) auto; } }
+/* SPFx Graph permissions picker */
+.g-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px 16px; }
+.g-it { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; cursor: pointer; line-height: 1.4; }
+.spfxv .g-it input { width: auto; margin: 3px 0 0; accent-color: var(--amber); flex: none; }
+.g-it code { color: var(--muted); font-size: 11px; white-space: nowrap; }
+.g-none { color: var(--muted); }
+.g-tw small { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+.g-t { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 13px; }
+.g-t th, .g-t td { text-align: left; border-bottom: 1px solid var(--faint); padding: 7px 8px; vertical-align: top; overflow-wrap: anywhere; }
+.g-t th { color: var(--muted); font-weight: 600; } .g-t td code { color: var(--amber-ink); font-size: 12px; }
+.g-cov { color: var(--muted); display: block; text-transform: none; letter-spacing: 0; font-size: 11px; }
+@media (max-width: 640px) { .g-list { grid-template-columns: minmax(0,1fr); } .g-t thead { display: none; } .g-t tr { display: block; border-bottom: 1px solid var(--faint); padding: 6px 0; } .g-t td { display: block; border: 0; padding: 2px 4px; } }
 /* 404 drawing */
 .nf-art { max-width: 520px; margin: 26px 0 18px; }
 .nf-art svg { width: 100%; height: auto; }
