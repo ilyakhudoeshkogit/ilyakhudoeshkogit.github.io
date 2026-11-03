@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Конструктор панели свойств веб-части SPFx | Илья Худоешко</title>
+<meta name="description" content="Добавьте поля панели свойств и сразу получите интерфейс свойств, getPropertyPaneConfiguration() с импортами, блок properties для манифеста и строки loc, с живым предпросмотром панели.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/notes/spfx-property-pane/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/spfx-property-pane/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/spfx-property-pane/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/spfx-property-pane/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Илья Худоешко">
+<meta property="og:title" content="Конструктор панели свойств веб-части SPFx | Илья Худоешко">
+<meta property="og:description" content="Добавьте поля панели свойств и сразу получите интерфейс свойств, getPropertyPaneConfiguration() с импортами, блок properties для манифеста и строки loc, с живым предпросмотром панели.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/notes/spfx-property-pane/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Конструктор панели свойств веб-части SPFx | Илья Худоешко">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Конструктор панели свойств веб-части SPFx | Илья Худоешко">
+<meta name="twitter:description" content="Добавьте поля панели свойств и сразу получите интерфейс свойств, getPropertyPaneConfiguration() с импортами, блок properties для манифеста и строки loc, с живым предпросмотром панели.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Илья Худоешко">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.3054da28.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Илья Худоешко","url":"https://ilyakhudoeshkogit.github.io/","jobTitle":"SharePoint / SPFx разработчик","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol","https://www.linkedin.com/in/ilya-khudoeshko/"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Илья Худоешко","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"Article","url":"https://ilyakhudoeshkogit.github.io/notes/spfx-property-pane/","name":"Конструктор панели свойств веб-части SPFx | Илья Худоешко","inLanguage":"ru","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"},"headline":"Конструктор панели свойств веб-части SPFx","datePublished":"2026-11-03","author":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"description":"Добавьте поля панели свойств и сразу получите интерфейс свойств, getPropertyPaneConfiguration() с импортами, блок properties для манифеста и строки loc, с живым предпросмотром панели."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://ilyakhudoeshkogit.github.io/"},{"@type":"ListItem","position":2,"name":"Заметки","item":"https://ilyakhudoeshkogit.github.io/notes/"},{"@type":"ListItem","position":3,"name":"Конструктор панели свойств веб-части SPFx","item":"https://ilyakhudoeshkogit.github.io/notes/spfx-property-pane/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">К содержимому</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/">ХУДОЕШКО И.О.<small>SharePoint / SPFx</small></a><nav aria-label="Разделы сайта"><a href="/"><small>Лист 1</small>Главная</a><a href="/projects/"><small>Лист 2</small>Проекты</a><a href="/about/"><small>Лист 3</small>Обо мне</a><a href="/contact/"><small>Лист 4</small>Контакты</a><a href="/notes/" class="on"><small>Лист 5</small>Заметки</a></nav><div class="ctl"><a class="langbtn" href="/en/notes/spfx-property-pane/" hreflang="en" lang="en" aria-label="English version">EN</a><button type="button" id="theme" aria-label="Сменить тему">Тема</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/">Главная</a> / <a href="/notes/">Заметки</a></p></div><div class="rv" style="--d:0.06s"><h1>Конструктор панели свойств веб-части SPFx</h1></div><div class="rv" style="--d:0.12s"><p class="lead">Добавьте поля панели свойств и сразу получите интерфейс свойств, getPropertyPaneConfiguration() с импортами, блок properties для манифеста и строки loc, с живым предпросмотром панели.</p></div></header><section><div class="prog" aria-hidden="true"></div><article class="note"><div class="rv"><p>Одно свойство веб-части SPFx живёт в пяти местах: в интерфейсе свойств, в <code>getPropertyPaneConfiguration()</code>, в манифесте как значение по умолчанию и в двух файлах <code>loc</code> как подпись. Забудешь одно, и сборка падает или в панели появляется пустая подпись. Поэтому собрал конструктор: описываете поля один раз, и он пишет все пять кусков, а слева показывает, как панель будет выглядеть.</p></div><div class="rv"><div class="spfxv spq spp" id="spp"><p class="q-presets">Пример: <button type="button" class="q-pre" data-preset="exec">Executive Dashboard</button> <button type="button" class="q-pre" data-preset="desk">Desk Reservation</button> <button type="button" class="q-pre" data-preset="news">Новости команды (Teams / News)</button></p><div class="sv-in"><label>Имя веб-части (PascalCase)<input id="p-name" type="text" spellcheck="false" autocomplete="off"><small class="p-err" id="p-name-err" aria-live="polite"></small></label><label>Описание панели<input id="p-desc" type="text" autocomplete="off"></label></div><label class="p-c p-nr"><input id="p-nr" type="checkbox"> disableReactivePropertyChanges (кнопка «Применить»)</label><fieldset class="q-fs"><legend>Поля панели</legend><div id="p-fields"></div><p class="p-add"><label>Тип <select id="p-type"></select></label> <button type="button" id="p-addb" class="q-pre">+ поле</button></p></fieldset><div class="p-grid"><div class="p-prev" aria-live="polite"></div><div class="q-out p-out" aria-live="polite"><noscript><p>Конструктору нужен JavaScript. Так выглядит результат для Executive Dashboard:</p><pre class="code"><code>import {
+  IPropertyPaneConfiguration,
+  PropertyPaneTextField,
+  PropertyPaneToggle,
+  PropertyPaneSlider
+} from &#x27;@microsoft/sp-property-pane&#x27;;
+import * as strings from &#x27;ExecutiveDashboardWebPartStrings&#x27;;
+
+export interface IExecutiveDashboardWebPartProps {
+  title: string;
+  approvalsList: string;
+  itemCount: number;
+  showKpi: boolean;
+}
+
+protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+  return {
+    pages: [
+      {
+        header: { description: strings.PropertyPaneDescription },
+        groups: [
+          {
+            groupName: strings.BasicGroupName,
+            groupFields: [
+              PropertyPaneTextField(&#x27;title&#x27;, { label: strings.TitleFieldLabel }),
+              PropertyPaneTextField(&#x27;approvalsList&#x27;, { label: strings.ApprovalsListFieldLabel }),
+              PropertyPaneSlider(&#x27;itemCount&#x27;, { label: strings.ItemCountFieldLabel, min: 5, max: 50, step: 5 }),
+              PropertyPaneToggle(&#x27;showKpi&#x27;, { label: strings.ShowKpiFieldLabel })
+            ]
+          }
+        ]
+      }
+    ]
+  };
+}</code></pre></noscript></div></div></div></div><h2 class="nh rv">Реактивная и нереактивная панель</h2><div class="rv"><p>По умолчанию панель реактивная: каждое изменение сразу уходит в <code>this.properties</code> и веб-часть перерисовывается. Если перерисовка дорогая, например каждый раз идёт запрос к списку, включите <code>disableReactivePropertyChanges</code>: появится кнопка «Применить», а пока <code>onGetErrorMessage</code> возвращает ошибку, она недоступна. В предпросмотре это видно по блоку <code>this.properties</code>: в нереактивном режиме он меняется только после нажатия.</p></div><div class="rv"><p>Пресеты взяты из моих проектов: <a href="/projects/executive-dashboard/">Executive Dashboard</a> (список согласований и плитки KPI) и <a href="/projects/desk-reservation/">Desk Reservation</a> (список мест, зона и горизонт брони). Варианты выпадающего списка здесь заданы в коде; если они приходят из SharePoint, их загружают асинхронно, как в разборе <a href="/notes/spfx-rest-two-lists/">брони на двух списках</a>.</p></div><div class="rv"><p>Имена API и импортов сверены с документацией Microsoft Learn 03.11.2026: <a href="https://learn.microsoft.com/sharepoint/dev/spfx/web-parts/basics/integrate-with-property-pane" rel="noopener">настройка панели свойств</a>, <a href="https://learn.microsoft.com/sharepoint/dev/spfx/web-parts/guidance/validate-web-part-property-values" rel="noopener">проверка значений</a>, <a href="https://learn.microsoft.com/sharepoint/dev/spfx/web-parts/guidance/use-cascading-dropdowns-in-web-part-properties" rel="noopener">каскадные выпадающие списки</a>, <a href="https://learn.microsoft.com/sharepoint/dev/spfx/web-parts/guidance/simplify-adding-web-parts-with-preconfigured-entries" rel="noopener">preconfiguredEntries</a>, <a href="https://learn.microsoft.com/sharepoint/dev/spfx/dynamic-loading" rel="noopener">loadPropertyPaneResources</a> и <a href="https://learn.microsoft.com/javascript/api/sp-property-pane" rel="noopener">справочник @microsoft/sp-property-pane</a>. Конструктор работает только в браузере и ничего никуда не отправляет.</p></div></article><div class="pn rv"><a href="/notes/">← Все заметки</a><a href="/contact/">Написать</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Обозначение</small><span>ХИО-05.9</span></div><div class="c1" style="--i:1"><small>Лит.</small><span>У</span></div><div class="c1" style="--i:2"><small>Лист</small><span>5.9</span></div><div class="c1 e" style="--i:3"><small>Листов</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Наименование</small><span class="ttl">Конструктор панели свойств веб-части SPFx</span></div><div class="c2 e" style="--i:5"><small>Дата</small><span>03.11.2026</span></div><div class="c3 rl" style="--i:6"><small>Разраб.</small><span>Худоешко И.О.</span></div><div class="c3 e rl" style="--i:7"><small>Почта</small><span><a href="mailto:ilyaxyd@icloud.com?subject=%D0%9F%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5%20/%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7&amp;body=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%98%D0%BB%D1%8C%D1%8F%21%0A%0A%D0%9F%D0%B8%D1%88%D1%83%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%3A%20%28%D0%B2%D0%B0%D0%BA%D0%B0%D0%BD%D1%81%D0%B8%D1%8F%20/%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%29%0A%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%3A%20%0A%D0%A1%D1%80%D0%BE%D0%BA%D0%B8%3A%20%0A%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%3A%20%28%D1%88%D1%82%D0%B0%D1%82%20/%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%2C%20%D0%BE%D1%84%D0%B8%D1%81%20/%20%D1%83%D0%B4%D0%B0%D0%BB%D1%91%D0%BD%D0%BD%D0%BE%29%0A%0A%D0%A1%20%D1%83%D0%B2%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Худоешко И.О.</span><span>Код проектов закрыт: покажу по запросу</span></p></footer>
+</div>
+</div>
+<script src="/script.552efde0.js"></script>
+<script src="/prop-tool.e003e058.js"></script>
+</body>
+</html>

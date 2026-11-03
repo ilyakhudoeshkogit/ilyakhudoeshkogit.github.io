@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPFx web part property pane builder | Ilya Khudoeshko</title>
+<meta name="description" content="Add property pane fields and get the props interface, getPropertyPaneConfiguration() with imports, the manifest properties block and the loc strings at once, with a live pane preview.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/en/notes/spfx-property-pane/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/spfx-property-pane/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/spfx-property-pane/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/spfx-property-pane/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ilya Khudoeshko">
+<meta property="og:title" content="SPFx web part property pane builder | Ilya Khudoeshko">
+<meta property="og:description" content="Add property pane fields and get the props interface, getPropertyPaneConfiguration() with imports, the manifest properties block and the loc strings at once, with a live pane preview.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/en/notes/spfx-property-pane/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SPFx web part property pane builder | Ilya Khudoeshko">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SPFx web part property pane builder | Ilya Khudoeshko">
+<meta name="twitter:description" content="Add property pane fields and get the props interface, getPropertyPaneConfiguration() with imports, the manifest properties block and the loc strings at once, with a live pane preview.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Ilya Khudoeshko">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.3054da28.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Ilya Khudoeshko","url":"https://ilyakhudoeshkogit.github.io/en/","jobTitle":"SharePoint / SPFx developer","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image-en.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol","https://www.linkedin.com/in/ilya-khudoeshko/"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Ilya Khudoeshko","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"Article","url":"https://ilyakhudoeshkogit.github.io/en/notes/spfx-property-pane/","name":"SPFx web part property pane builder | Ilya Khudoeshko","inLanguage":"en","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"},"headline":"SPFx web part property pane builder","datePublished":"2026-11-03","author":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"description":"Add property pane fields and get the props interface, getPropertyPaneConfiguration() with imports, the manifest properties block and the loc strings at once, with a live pane preview."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ilyakhudoeshkogit.github.io/en/"},{"@type":"ListItem","position":2,"name":"Notes","item":"https://ilyakhudoeshkogit.github.io/en/notes/"},{"@type":"ListItem","position":3,"name":"SPFx web part property pane builder","item":"https://ilyakhudoeshkogit.github.io/en/notes/spfx-property-pane/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/en/">KHUDOESHKO I.<small>SharePoint / SPFx</small></a><nav aria-label="Site sections"><a href="/en/"><small>Sheet 1</small>Home</a><a href="/en/projects/"><small>Sheet 2</small>Projects</a><a href="/en/about/"><small>Sheet 3</small>About</a><a href="/en/contact/"><small>Sheet 4</small>Contact</a><a href="/en/notes/" class="on"><small>Sheet 5</small>Notes</a></nav><div class="ctl"><a class="langbtn" href="/notes/spfx-property-pane/" hreflang="ru" lang="ru" aria-label="Русская версия">RU</a><button type="button" id="theme" aria-label="Toggle theme">Theme</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/en/">Home</a> / <a href="/en/notes/">Notes</a></p></div><div class="rv" style="--d:0.06s"><h1>SPFx web part property pane builder</h1></div><div class="rv" style="--d:0.12s"><p class="lead">Add property pane fields and get the props interface, getPropertyPaneConfiguration() with imports, the manifest properties block and the loc strings at once, with a live pane preview.</p></div></header><section><div class="prog" aria-hidden="true"></div><article class="note"><div class="rv"><p>A single SPFx web part property lives in five places: the props interface, <code>getPropertyPaneConfiguration()</code>, the manifest as a default value and two <code>loc</code> files as a label. Forget one and the build fails or the pane shows an empty label. So I built a builder: describe the fields once and it writes all five pieces, with a preview of how the pane will look.</p></div><div class="rv"><div class="spfxv spq spp" id="spp"><p class="q-presets">Example: <button type="button" class="q-pre" data-preset="exec">Executive Dashboard</button> <button type="button" class="q-pre" data-preset="desk">Desk Reservation</button> <button type="button" class="q-pre" data-preset="news">Team news (Teams / News)</button></p><div class="sv-in"><label>Web part name (PascalCase)<input id="p-name" type="text" spellcheck="false" autocomplete="off"><small class="p-err" id="p-name-err" aria-live="polite"></small></label><label>Pane description<input id="p-desc" type="text" autocomplete="off"></label></div><label class="p-c p-nr"><input id="p-nr" type="checkbox"> disableReactivePropertyChanges (Apply button)</label><fieldset class="q-fs"><legend>Pane fields</legend><div id="p-fields"></div><p class="p-add"><label>Type <select id="p-type"></select></label> <button type="button" id="p-addb" class="q-pre">+ field</button></p></fieldset><div class="p-grid"><div class="p-prev" aria-live="polite"></div><div class="q-out p-out" aria-live="polite"><noscript><p>The builder needs JavaScript. This is what it produces for Executive Dashboard:</p><pre class="code"><code>import {
+  IPropertyPaneConfiguration,
+  PropertyPaneTextField,
+  PropertyPaneToggle,
+  PropertyPaneSlider
+} from &#x27;@microsoft/sp-property-pane&#x27;;
+import * as strings from &#x27;ExecutiveDashboardWebPartStrings&#x27;;
+
+export interface IExecutiveDashboardWebPartProps {
+  title: string;
+  approvalsList: string;
+  itemCount: number;
+  showKpi: boolean;
+}
+
+protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+  return {
+    pages: [
+      {
+        header: { description: strings.PropertyPaneDescription },
+        groups: [
+          {
+            groupName: strings.BasicGroupName,
+            groupFields: [
+              PropertyPaneTextField(&#x27;title&#x27;, { label: strings.TitleFieldLabel }),
+              PropertyPaneTextField(&#x27;approvalsList&#x27;, { label: strings.ApprovalsListFieldLabel }),
+              PropertyPaneSlider(&#x27;itemCount&#x27;, { label: strings.ItemCountFieldLabel, min: 5, max: 50, step: 5 }),
+              PropertyPaneToggle(&#x27;showKpi&#x27;, { label: strings.ShowKpiFieldLabel })
+            ]
+          }
+        ]
+      }
+    ]
+  };
+}</code></pre></noscript></div></div></div></div><h2 class="nh rv">Reactive and non-reactive pane</h2><div class="rv"><p>By default the pane is reactive: every change goes straight into <code>this.properties</code> and the web part re-renders. If re-rendering is expensive, for example each time it queries a list, turn on <code>disableReactivePropertyChanges</code>: an Apply button appears, and while <code>onGetErrorMessage</code> returns an error it is disabled. The preview shows this in the <code>this.properties</code> block: in non-reactive mode it only changes after Apply.</p></div><div class="rv"><p>The presets come from my projects: <a href="/en/projects/executive-dashboard/">Executive Dashboard</a> (the approvals list and KPI tiles) and <a href="/en/projects/desk-reservation/">Desk Reservation</a> (the desks list, zone and booking horizon). Dropdown options here are set in code; if they come from SharePoint they are loaded asynchronously, as in the <a href="/en/notes/spfx-rest-two-lists/">bookings on two lists</a> write-up.</p></div><div class="rv"><p>API and import names are checked against the Microsoft Learn docs on 3 Nov 2026: <a href="https://learn.microsoft.com/sharepoint/dev/spfx/web-parts/basics/integrate-with-property-pane" rel="noopener">configuring the property pane</a>, <a href="https://learn.microsoft.com/sharepoint/dev/spfx/web-parts/guidance/validate-web-part-property-values" rel="noopener">validating values</a>, <a href="https://learn.microsoft.com/sharepoint/dev/spfx/web-parts/guidance/use-cascading-dropdowns-in-web-part-properties" rel="noopener">cascading dropdowns</a>, <a href="https://learn.microsoft.com/sharepoint/dev/spfx/web-parts/guidance/simplify-adding-web-parts-with-preconfigured-entries" rel="noopener">preconfiguredEntries</a>, <a href="https://learn.microsoft.com/sharepoint/dev/spfx/dynamic-loading" rel="noopener">loadPropertyPaneResources</a> and the <a href="https://learn.microsoft.com/javascript/api/sp-property-pane" rel="noopener">@microsoft/sp-property-pane reference</a>. The builder runs only in the browser and sends nothing anywhere.</p></div></article><div class="pn rv"><a href="/en/notes/">← All notes</a><a href="/en/contact/">Get in touch</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Drawing no.</small><span>KHIO-05.9</span></div><div class="c1" style="--i:1"><small>Lit.</small><span>T</span></div><div class="c1" style="--i:2"><small>Sheet</small><span>5.9</span></div><div class="c1 e" style="--i:3"><small>Total</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Title</small><span class="ttl">SPFx web part property pane builder</span></div><div class="c2 e" style="--i:5"><small>Date</small><span>03.11.2026</span></div><div class="c3 rl" style="--i:6"><small>Drawn</small><span>Khudoeshko I.</span></div><div class="c3 e rl" style="--i:7"><small>Email</small><span><a href="mailto:ilyaxyd@icloud.com?subject=Job%20offer%20/%20project%20inquiry&amp;body=Hello%20Ilya%2C%0A%0AI%20am%20writing%20about%3A%20%28job%20/%20project%29%0ATask%3A%20%0ATimeline%3A%20%0AFormat%3A%20%28staff%20/%20project%2C%20office%20/%20remote%29%0A%0ABest%20regards%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Khudoeshko I.</span><span>Project code is private: available on request</span></p></footer>
+</div>
+</div>
+<script src="/script.552efde0.js"></script>
+<script src="/prop-tool.e003e058.js"></script>
+</body>
+</html>
