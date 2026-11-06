@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SharePoint list form formatting: a JSON builder | Ilya Khudoeshko</title>
+<meta name="description" content="Build the header, body and footer for &quot;Format form&quot;: icon and title, field sections and footer actions, with a live preview and a Copy button.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-form-formatting/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/sharepoint-form-formatting/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-form-formatting/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/sharepoint-form-formatting/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ilya Khudoeshko">
+<meta property="og:title" content="SharePoint list form formatting: a JSON builder | Ilya Khudoeshko">
+<meta property="og:description" content="Build the header, body and footer for &quot;Format form&quot;: icon and title, field sections and footer actions, with a live preview and a Copy button.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-form-formatting/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SharePoint list form formatting: a JSON builder | Ilya Khudoeshko">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SharePoint list form formatting: a JSON builder | Ilya Khudoeshko">
+<meta name="twitter:description" content="Build the header, body and footer for &quot;Format form&quot;: icon and title, field sections and footer actions, with a live preview and a Copy button.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Ilya Khudoeshko">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.4284c22b.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Ilya Khudoeshko","url":"https://ilyakhudoeshkogit.github.io/en/","jobTitle":"SharePoint / SPFx developer","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image-en.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol","https://www.linkedin.com/in/ilya-khudoeshko/"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Ilya Khudoeshko","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"Article","url":"https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-form-formatting/","name":"SharePoint list form formatting: a JSON builder | Ilya Khudoeshko","inLanguage":"en","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"},"headline":"SharePoint list form formatting: a JSON builder","datePublished":"2026-11-06","author":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"description":"Build the header, body and footer for \"Format form\": icon and title, field sections and footer actions, with a live preview and a Copy button."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ilyakhudoeshkogit.github.io/en/"},{"@type":"ListItem","position":2,"name":"Notes","item":"https://ilyakhudoeshkogit.github.io/en/notes/"},{"@type":"ListItem","position":3,"name":"SharePoint list form formatting: a JSON builder","item":"https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-form-formatting/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/en/">KHUDOESHKO I.<small>SharePoint / SPFx</small></a><nav aria-label="Site sections"><a href="/en/"><small>Sheet 1</small>Home</a><a href="/en/projects/"><small>Sheet 2</small>Projects</a><a href="/en/about/"><small>Sheet 3</small>About</a><a href="/en/contact/"><small>Sheet 4</small>Contact</a><a href="/en/notes/" class="on"><small>Sheet 5</small>Notes</a></nav><div class="ctl"><a class="langbtn" href="/notes/sharepoint-form-formatting/" hreflang="ru" lang="ru" aria-label="Русская версия">RU</a><button type="button" id="theme" aria-label="Toggle theme">Theme</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/en/">Home</a> / <a href="/en/notes/">Notes</a></p></div><div class="rv" style="--d:0.06s"><h1>SharePoint list form formatting: a JSON builder</h1></div><div class="rv" style="--d:0.12s"><p class="lead">Build the header, body and footer for "Format form": icon and title, field sections and footer actions, with a live preview and a Copy button.</p></div></header><section><div class="prog" aria-hidden="true"></div><article class="note"><div class="rv"><p>After column formatting, the natural next step is the item form itself. In modern SharePoint lists it has three zones: header, body with sections and footer. Writing JSON for each by hand is slow: header/footer share one schema (column formatting), body uses another (<code>sections</code>). So I built a builder next to <a href="/en/notes/sharepoint-column-formatting/">column formatting</a>.</p></div><div class="rv"><div class="spfxv spq sfm" id="sfm" data-mode="header" data-person="1"><p class="q-presets">Example: <button type="button" class="q-pre" data-preset="approvals">Approvals (Executive Dashboard)</button> <button type="button" class="q-pre" data-preset="desk">Desk Reservation</button> <button type="button" class="q-pre" data-preset="task">Task / simple</button></p><div class="f-tabs" role="tablist"><button type="button" class="f-tab" role="tab" data-mode="header" aria-selected="true">Header</button><button type="button" class="f-tab" role="tab" data-mode="body" aria-selected="false">Body</button><button type="button" class="f-tab" role="tab" data-mode="footer" aria-selected="false">Footer</button></div><div class="f-pane f-m-header"><div class="sv-in"><label>Fluent icon name<input id="f-icon" type="text" spellcheck="false" autocomplete="off"></label><label>Title (text or expression)<input id="f-title" type="text" spellcheck="false" autocomplete="off"></label></div><div class="sv-in"><label>Subtitle<input id="f-sub" type="text" spellcheck="false" autocomplete="off"></label><label class="p-c f-person-lab"><input id="f-person" type="checkbox"> Show person</label></div><div class="sv-in f-person-f"><label>Person field (internal name)<input id="f-person-f" type="text" spellcheck="false" autocomplete="off"></label></div></div><div class="f-pane f-m-body"><fieldset class="q-fs"><legend>Form sections</legend><div id="f-secs"></div><button type="button" id="f-add-sec" class="q-pre">+ section</button></fieldset></div><div class="f-pane f-m-footer"><fieldset class="q-fs"><legend>Footer actions</legend><div id="f-acts"></div><button type="button" id="f-add-act" class="q-pre">+ action</button></fieldset></div><div class="q-out f-out" aria-live="polite"><noscript><p>The builder needs JavaScript. Sample header JSON for Approvals:</p><pre class="code"><code>{
+  &quot;$schema&quot;: &quot;https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json&quot;,
+  &quot;elmType&quot;: &quot;div&quot;,
+  &quot;attributes&quot;: { &quot;class&quot;: &quot;ms-borderColor-neutralTertiary&quot; },
+  &quot;style&quot;: {
+    &quot;width&quot;: &quot;99%&quot;,
+    &quot;border-bottom-width&quot;: &quot;1px&quot;,
+    &quot;border-style&quot;: &quot;solid&quot;,
+    &quot;margin-bottom&quot;: &quot;16px&quot;
+  },
+  &quot;children&quot;: [
+    {
+      &quot;elmType&quot;: &quot;div&quot;,
+      &quot;style&quot;: { &quot;display&quot;: &quot;flex&quot;, &quot;align-items&quot;: &quot;center&quot; },
+      &quot;children&quot;: [
+        {
+          &quot;elmType&quot;: &quot;div&quot;,
+          &quot;attributes&quot;: {
+            &quot;iconName&quot;: &quot;CheckboxComposite&quot;,
+            &quot;class&quot;: &quot;ms-fontSize-42 ms-fontColor-themePrimary&quot;
+          }
+        }
+      ]
+    },
+    {
+      &quot;elmType&quot;: &quot;div&quot;,
+      &quot;attributes&quot;: { &quot;class&quot;: &quot;ms-fontWeight-bold ms-fontSize-24&quot; },
+      &quot;children&quot;: [
+        { &quot;elmType&quot;: &quot;div&quot;, &quot;txtContent&quot;: &quot;=&#x27;Approval: &#x27; + [$Title]&quot; }
+      ]
+    }
+  ]
+}</code></pre></noscript></div></div></div><h2 class="nh rv">How body differs from header</h2><div class="rv"><p>Header and footer are an <code>elmType</code> tree, like column formatting: a Fluent icon, text with <code>[$Title]</code> tokens, links. Body only does layout: a <code>sections</code> array with field display names. Conditional field visibility is a separate formula under Edit columns, not part of the body JSON. Presets come from my projects: approvals in <a href="/en/projects/executive-dashboard/">Executive Dashboard</a> and bookings in <a href="/en/projects/desk-reservation/">Desk Reservation</a>.</p></div><div class="rv"><p>The schema is checked against <a href="https://learn.microsoft.com/sharepoint/dev/declarative-customization/list-form-configuration" rel="noopener">Configure the list form</a> on Microsoft Learn, 6 Nov 2026. The builder runs only in the browser and sends nothing anywhere.</p></div></article><div class="pn rv"><a href="/en/notes/">← All notes</a><a href="/en/contact/">Get in touch</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Drawing no.</small><span>KHIO-05.10</span></div><div class="c1" style="--i:1"><small>Lit.</small><span>T</span></div><div class="c1" style="--i:2"><small>Sheet</small><span>5.10</span></div><div class="c1 e" style="--i:3"><small>Total</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Title</small><span class="ttl">SharePoint list form formatting: a JSON builder</span></div><div class="c2 e" style="--i:5"><small>Date</small><span>06.11.2026</span></div><div class="c3 rl" style="--i:6"><small>Drawn</small><span>Khudoeshko I.</span></div><div class="c3 e rl" style="--i:7"><small>Email</small><span><a href="mailto:ilyaxyd@icloud.com?subject=Job%20offer%20/%20project%20inquiry&amp;body=Hello%20Ilya%2C%0A%0AI%20am%20writing%20about%3A%20%28job%20/%20project%29%0ATask%3A%20%0ATimeline%3A%20%0AFormat%3A%20%28staff%20/%20project%2C%20office%20/%20remote%29%0A%0ABest%20regards%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Khudoeshko I.</span><span>Project code is private: available on request</span></p></footer>
+</div>
+</div>
+<script src="/script.552efde0.js"></script>
+<script src="/form-tool.ac1ae2eb.js"></script>
+</body>
+</html>
