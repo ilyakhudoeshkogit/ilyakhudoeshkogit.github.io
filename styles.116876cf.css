@@ -201,6 +201,8 @@ figcaption b { color: var(--amber-ink); font-weight: 700; }
 .stamp .tb > .rl { border-bottom: 0; }
 .stamp .name .ttl { font-size: 19px; }
 .copy { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 14px 0 0; font-family: var(--mono); font-size: 14px; color: var(--muted); }
+.priv a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.priv a:hover { color: var(--accent); }
 
 /* skip link, visible on keyboard focus only */
 .skip { position: absolute; left: 8px; top: -60px; z-index: 10; padding: 8px 14px; background: var(--paper); color: var(--ink); border: 2px solid var(--amber); font-family: var(--mono); font-size: 15px; }
