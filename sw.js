@@ -1,9 +1,9 @@
-/* Service worker. Build dfac2657ac is a hash of the whole site, so every release gets a new worker and a new cache.
+/* Service worker. Build f0914d08c2 is a hash of the whole site, so every release gets a new worker and a new cache.
    - hashed css/js/images (file name contains the content hash): cache first, they never change
    - pages (HTML): stale-while-revalidate, the revalidation asks the server with If-None-Match (cache: 'no-cache'),
      so it ignores the 10-minute max-age that GitHub Pages sets
    - everything else (PDF, sitemap, other origins, non-GET, Range): not touched */
-var VERSION = 'dfac2657ac';
+var VERSION = 'f0914d08c2';
 var CACHE = 'site-' + VERSION;
 var PRECACHE = ["/", "/en/", "/styles.116876cf.css", "/script.552efde0.js", "/favicon.svg"];
 var HASHED = /\.[0-9a-f]{8}\.(css|js|webp|svg|png)$/;
