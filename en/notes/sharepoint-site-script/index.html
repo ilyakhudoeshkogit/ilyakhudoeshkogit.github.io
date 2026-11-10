@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A SharePoint site template without the PowerShell grind: a site script builder | Ilya Khudoeshko</title>
+<meta name="description" content="Describe lists, columns, navigation, theme and hub and get a ready site-script.json with stable GUIDs, registration scripts for SPO and PnP PowerShell and a sketch of the future site.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-site-script/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/sharepoint-site-script/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-site-script/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/sharepoint-site-script/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ilya Khudoeshko">
+<meta property="og:title" content="A SharePoint site template without the PowerShell grind: a site script builder | Ilya Khudoeshko">
+<meta property="og:description" content="Describe lists, columns, navigation, theme and hub and get a ready site-script.json with stable GUIDs, registration scripts for SPO and PnP PowerShell and a sketch of the future site.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-site-script/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A SharePoint site template without the PowerShell grind: a site script builder | Ilya Khudoeshko">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A SharePoint site template without the PowerShell grind: a site script builder | Ilya Khudoeshko">
+<meta name="twitter:description" content="Describe lists, columns, navigation, theme and hub and get a ready site-script.json with stable GUIDs, registration scripts for SPO and PnP PowerShell and a sketch of the future site.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image-en.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Ilya Khudoeshko">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.819bafa0.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Ilya Khudoeshko","url":"https://ilyakhudoeshkogit.github.io/en/","jobTitle":"SharePoint / SPFx developer","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image-en.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol","https://www.linkedin.com/in/ilya-khudoeshko/"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Ilya Khudoeshko","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"Article","url":"https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-site-script/","name":"A SharePoint site template without the PowerShell grind: a site script builder | Ilya Khudoeshko","inLanguage":"en","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"},"headline":"A SharePoint site template without the PowerShell grind: a site script builder","datePublished":"2026-11-10","author":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"description":"Describe lists, columns, navigation, theme and hub and get a ready site-script.json with stable GUIDs, registration scripts for SPO and PnP PowerShell and a sketch of the future site."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ilyakhudoeshkogit.github.io/en/"},{"@type":"ListItem","position":2,"name":"Notes","item":"https://ilyakhudoeshkogit.github.io/en/notes/"},{"@type":"ListItem","position":3,"name":"A SharePoint site template without the PowerShell grind: a site script builder","item":"https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-site-script/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/en/">KHUDOESHKO I.<small>SharePoint / SPFx</small></a><nav aria-label="Site sections"><a href="/en/"><small>Sheet 1</small>Home</a><a href="/en/projects/"><small>Sheet 2</small>Projects</a><a href="/en/about/"><small>Sheet 3</small>About</a><a href="/en/contact/"><small>Sheet 4</small>Contact</a><a href="/en/notes/" class="on"><small>Sheet 5</small>Notes</a></nav><div class="ctl"><a class="langbtn" href="/notes/sharepoint-site-script/" hreflang="ru" lang="ru" aria-label="Русская версия">RU</a><button type="button" id="theme" aria-label="Toggle theme">Theme</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/en/">Home</a> / <a href="/en/notes/">Notes</a></p></div><div class="rv" style="--d:0.06s"><h1>A SharePoint site template without the PowerShell grind: a site script builder</h1></div><div class="rv" style="--d:0.12s"><p class="lead">Describe lists, columns, navigation, theme and hub and get a ready site-script.json with stable GUIDs, registration scripts for SPO and PnP PowerShell and a sketch of the future site.</p></div></header><section><div class="prog" aria-hidden="true"></div><article class="note"><div class="rv"><p>When a portal has several departments, nobody creates the same lists and menus on every site by hand. For <a href="/en/projects/halden/">Halden</a> I wrote a <a href="/en/notes/provisioning-sharepoint-lists/">PowerShell deployment</a>, but SharePoint Online has a simpler way: a site template built from a JSON script of actions. You register it once, and any site owner applies it from "Apply a site template". The JSON is long, and Choice and lookup columns are written as escaped CAML, so I built a builder.</p></div><div class="rv"><div class="spfxv spq sst" id="sst" data-tpl="68"><p class="q-presets">Example: <button type="button" class="q-pre" data-preset="halden">Portal department (Halden)</button> <button type="button" class="q-pre" data-preset="desk">Desk booking (Desk Reservation)</button> <button type="button" class="q-pre" data-preset="exec">Approvals (Executive Dashboard)</button></p><fieldset class="q-fs"><legend>Site</legend><div class="ss-g"><label>Template title<input id="ss-title" type="text" spellcheck="false" autocomplete="off" placeholder=""></label><label>For which sites<select id="ss-tpl"><option value="64">64 · Team site</option><option value="1">1 · Team site, no group</option><option value="68">68 · Communication site</option></select></label><label>Custom theme (applyTheme)<input id="ss-theme" type="text" spellcheck="false" autocomplete="off" placeholder="Halden"></label><label>Logo (68 only)<input id="ss-logo" type="text" spellcheck="false" autocomplete="off" placeholder="/SiteAssets/logo.png"></label><label>Header<select id="ss-header"><option value="">—</option><option value="Standard">Standard</option><option value="Compact">Compact</option></select></label><label>Header background<select id="ss-bg"><option value="">—</option><option value="None">None</option><option value="Neutral">Neutral</option><option value="Soft">Soft</option><option value="Strong">Strong</option></select></label><label>Locale (LCID)<select id="ss-locale"><option value="">—</option><option value="1049">1049 · ru-RU</option><option value="1059">1059 · be-BY</option><option value="1033">1033 · en-US</option><option value="2057">2057 · en-GB</option></select></label><label>Guest access<select id="ss-sharing"><option value="">—</option><option value="Disabled">Disabled</option><option value="ExistingExternalUserSharingOnly">ExistingExternalUserSharingOnly</option><option value="ExternalUserSharingOnly">ExternalUserSharingOnly</option><option value="ExternalUserAndGuestSharing">ExternalUserAndGuestSharing</option></select></label><label>Hub site ID (joinHubSite)<input id="ss-hub" type="text" spellcheck="false" autocomplete="off" placeholder="00000000-0000-0000-0000-000000000000"></label><label>SPFx solution ID (installSolution)<input id="ss-sol" type="text" spellcheck="false" autocomplete="off" placeholder="00000000-0000-0000-0000-000000000000"></label><label>Solution name<input id="ss-soln" type="text" spellcheck="false" autocomplete="off" placeholder="my-webparts-client-side-solution"></label></div></fieldset><div id="ss-lists"></div><button type="button" id="ss-addl" class="q-pre">+ list</button><div class="q-out ss-out" aria-live="polite"><noscript><p>The builder needs JavaScript. An example of what it builds:</p><pre><code>{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json",
+  "actions": [
+    {
+      "verb": "createSPList",
+      "listName": "Desks",
+      "templateType": 100,
+      "subactions": [
+        { "verb": "setDescription", "description": "Bookable desks" },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "&lt;Field ID=\"{...}\" Type=\"Choice\" DisplayName=\"Zone\" Required=\"TRUE\" Format=\"Dropdown\" StaticName=\"Zone\" Name=\"Zone\"&gt;&lt;CHOICES&gt;&lt;CHOICE&gt;A&lt;/CHOICE&gt;&lt;CHOICE&gt;B&lt;/CHOICE&gt;&lt;/CHOICES&gt;&lt;/Field&gt;",
+          "addToDefaultView": true
+        }
+      ]
+    },
+    { "verb": "addNavLink", "url": "/Lists/Desks", "displayName": "Desks", "isWebRelative": true }
+  ]
+}</code></pre></noscript></div></div></div><h2 class="nh rv">Site script or a PnP template</h2><div class="rv"><p>A site script can only do what is in its <a href="https://learn.microsoft.com/sharepoint/dev/declarative-customization/site-design-json-schema" rel="noopener">list of actions</a>: lists, columns, views, navigation, theme, hub, installing a solution and starting a Power Automate flow. It does not create pages with web parts, per-list permissions or data. For that you call a flow with <code>triggerFlow</code> or use a PnP template, as in Halden. A handy middle ground: the site template builds the skeleton, and web parts like <a href="/en/projects/desk-reservation/">Desk Reservation</a> are added with <code>installSolution</code> from the App Catalog.</p></div><div class="rv"><p>Actions, parameters and limits are checked against Microsoft Learn on 10 Nov 2026: the <a href="https://learn.microsoft.com/sharepoint/dev/declarative-customization/site-design-overview" rel="noopener">site template overview</a> (types 64, 1, 68; 30 actions for Invoke-SPOSiteDesign, 300 actions or 100,000 characters when applied asynchronously) and the <a href="https://learn.microsoft.com/sharepoint/dev/declarative-customization/site-design-json-schema" rel="noopener">JSON schema</a>. The builder runs only in the browser and sends nothing anywhere.</p></div></article><div class="pn rv"><a href="/en/notes/">← All notes</a><a href="/en/contact/">Get in touch</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Drawing no.</small><span>KHIO-05.11</span></div><div class="c1" style="--i:1"><small>Lit.</small><span>T</span></div><div class="c1" style="--i:2"><small>Sheet</small><span>5.11</span></div><div class="c1 e" style="--i:3"><small>Total</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Title</small><span class="ttl">A SharePoint site template without the PowerShell grind: a site script builder</span></div><div class="c2 e" style="--i:5"><small>Date</small><span>10.11.2026</span></div><div class="c3 rl" style="--i:6"><small>Drawn</small><span>Khudoeshko I.</span></div><div class="c3 e rl" style="--i:7"><small>Email</small><span><a href="mailto:ilyaxyd@icloud.com?subject=Job%20offer%20/%20project%20inquiry&amp;body=Hello%20Ilya%2C%0A%0AI%20am%20writing%20about%3A%20%28job%20/%20project%29%0ATask%3A%20%0ATimeline%3A%20%0AFormat%3A%20%28staff%20/%20project%2C%20office%20/%20remote%29%0A%0ABest%20regards%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Khudoeshko I.</span><span>Project code is private: available on request</span><span class="priv">Stats: <a href="https://ilyakhudoeshko.goatcounter.com" rel="noopener">GoatCounter</a> (no cookies)</span></p></footer>
+</div>
+</div>
+<script src="/script.552efde0.js"></script>
+<script src="/site-tool.041d89cc.js"></script>
+<script data-goatcounter="https://ilyakhudoeshko.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

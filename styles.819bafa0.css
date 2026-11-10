@@ -701,6 +701,44 @@ pre.code { border: 1.5px solid var(--ink); border-left-width: 4px; padding: 12px
   .sfm .f-act .q-x { grid-column: 2; justify-self: end; }
   .sfm .f-row { grid-template-columns: 1fr; gap: 2px; }
 }
+/* SharePoint site script builder */
+.ss-g { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px 14px; } .ss-g label:first-child { grid-column: 1 / -1; }
+.ss-g label, .ss-lh label { display: grid; gap: 4px; color: var(--muted); font-size: 12px; min-width: 0; }
+.sst .ss-g input, .sst .ss-g select, .sst .ss-l input, .sst .ss-l select { padding: 6px 8px; font-size: 13px; }
+.ss-l { border-left: 3px solid var(--amber); }
+.ss-lh { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1.2fr) minmax(0,1.4fr) auto auto; gap: 8px 10px; align-items: end; margin-bottom: 10px; }
+.sst .ss-c { display: flex; gap: 6px; align-items: center; color: var(--ink); font-size: 12px; cursor: pointer; white-space: nowrap; }
+.sst .ss-c input { width: auto; margin: 0; accent-color: var(--amber); flex: none; }
+.ss-lh .q-x, .ss-f .q-x { height: 32px; width: 32px; }
+.ss-fh, .ss-f { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr) minmax(0,.9fr) minmax(0,1.5fr) 64px 32px; gap: 6px 8px; align-items: center; }
+.ss-fh { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+.ss-f { margin-bottom: 6px; }
+.ss-addf { margin-top: 4px; } #ss-addl { margin: 0 0 4px; }
+.ss-prev > small { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; display: block; margin: 0 0 6px; }
+.ss-site { border: 1.5px solid var(--ink); margin-bottom: 12px; }
+.ss-top { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 8px 12px; border-bottom: 1.5px solid var(--ink); background: var(--amber-soft); }
+.ss-top span { color: var(--muted); font-size: 12px; }
+.ss-body { display: grid; grid-template-columns: 170px minmax(0,1fr); }
+.ss-nav { list-style: none; margin: 0; padding: 8px 10px; border-right: 1px solid var(--faint); font-size: 13px; }
+.ss-nav li { padding: 4px 0; border-bottom: 1px dashed var(--faint); overflow-wrap: anywhere; }
+.ss-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; padding: 10px; }
+.ss-card { border: 1px solid var(--faint); padding: 8px 10px; font-size: 13px; min-width: 0; }
+.ss-card b { display: block; overflow-wrap: anywhere; } .ss-card small { color: var(--muted); font-size: 11px; }
+.ss-card ul { list-style: none; margin: 6px 0 0; padding: 0; } .ss-card li { padding: 2px 0; overflow-wrap: anywhere; }
+.ss-card i { font-style: normal; display: inline-block; width: 1.6em; color: var(--amber-ink); font-size: 11px; }
+.ss-none { color: var(--muted); margin: 0; }
+.ss-seq { margin: 0; padding-left: 22px; font-size: 13px; columns: 2; column-gap: 24px; } .ss-seq li { margin: 2px 0; break-inside: avoid; overflow-wrap: anywhere; }
+.ss-seq code { color: var(--amber-ink); font-size: 12px; } .ss-seq small { color: var(--muted); }
+.sst .q-blk pre { max-height: 420px; overflow: auto; }
+.ss-cnt { margin: 0; font-size: 13px; color: var(--muted); } .ss-cnt b { color: var(--ink); }
+@media (max-width: 760px) {
+  .ss-g { grid-template-columns: minmax(0,1fr); }
+  .ss-lh { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } .ss-lh label:nth-child(3) { grid-column: 1 / -1; } .ss-lh .q-x { justify-self: end; }
+  .ss-fh { display: none; }
+  .ss-f { grid-template-columns: minmax(0,1fr) minmax(0,1fr); padding-bottom: 8px; border-bottom: 1px dashed var(--faint); } .ss-f .f-ex { grid-column: 1 / -1; } .ss-f .q-x { justify-self: end; }
+  .ss-body { grid-template-columns: minmax(0,1fr); } .ss-nav { border-right: 0; border-bottom: 1px solid var(--faint); }
+  .ss-seq { columns: 1; }
+}
 /* 404 drawing */
 .nf-art { max-width: 520px; margin: 26px 0 18px; }
 .nf-art svg { width: 100%; height: auto; }

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шаблон сайта SharePoint без PowerShell-рутины: конструктор site script | Илья Худоешко</title>
+<meta name="description" content="Опишите списки, столбцы, меню, тему и хаб, и получите готовый site-script.json с постоянными GUID, скрипты регистрации для SPO и PnP PowerShell и схему будущего сайта.">
+<link rel="canonical" href="https://ilyakhudoeshkogit.github.io/notes/sharepoint-site-script/">
+<link rel="alternate" hreflang="ru" href="https://ilyakhudoeshkogit.github.io/notes/sharepoint-site-script/">
+<link rel="alternate" hreflang="en" href="https://ilyakhudoeshkogit.github.io/en/notes/sharepoint-site-script/">
+<link rel="alternate" hreflang="x-default" href="https://ilyakhudoeshkogit.github.io/notes/sharepoint-site-script/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Илья Худоешко">
+<meta property="og:title" content="Шаблон сайта SharePoint без PowerShell-рутины: конструктор site script | Илья Худоешко">
+<meta property="og:description" content="Опишите списки, столбцы, меню, тему и хаб, и получите готовый site-script.json с постоянными GUID, скрипты регистрации для SPO и PnP PowerShell и схему будущего сайта.">
+<meta property="og:url" content="https://ilyakhudoeshkogit.github.io/notes/sharepoint-site-script/">
+<meta property="og:image" content="https://ilyakhudoeshkogit.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Шаблон сайта SharePoint без PowerShell-рутины: конструктор site script | Илья Худоешко">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Шаблон сайта SharePoint без PowerShell-рутины: конструктор site script | Илья Худоешко">
+<meta name="twitter:description" content="Опишите списки, столбцы, меню, тему и хаб, и получите готовый site-script.json с постоянными GUID, скрипты регистрации для SPO и PnP PowerShell и схему будущего сайта.">
+<meta name="twitter:image" content="https://ilyakhudoeshkogit.github.io/og-image.png">
+<meta name="color-scheme" content="dark light">
+<meta name="author" content="Илья Худоешко">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.819bafa0.css">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    d.className = 'js rvx';
+    try {
+      var nv = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if ((nv && nv.type === 'reload') || !sessionStorage.getItem('drawn')) { d.className += ' first'; sessionStorage.setItem('drawn', '1'); }
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ilyakhudoeshkogit.github.io/#person","name":"Илья Худоешко","url":"https://ilyakhudoeshkogit.github.io/","jobTitle":"SharePoint / SPFx разработчик","email":"mailto:ilyaxyd@icloud.com","image":"https://ilyakhudoeshkogit.github.io/og-image.png","knowsAbout":["SharePoint Framework (SPFx)","SharePoint Online","React","TypeScript","PnPjs","Fluent UI"],"sameAs":["https://github.com/ilyakhudoeshkogit","https://t.me/lopiklol","https://www.linkedin.com/in/ilya-khudoeshko/"]},{"@type":"WebSite","@id":"https://ilyakhudoeshkogit.github.io/#website","url":"https://ilyakhudoeshkogit.github.io/","name":"Илья Худоешко","inLanguage":["ru","en"],"publisher":{"@id":"https://ilyakhudoeshkogit.github.io/#person"}},{"@type":"Article","url":"https://ilyakhudoeshkogit.github.io/notes/sharepoint-site-script/","name":"Шаблон сайта SharePoint без PowerShell-рутины: конструктор site script | Илья Худоешко","inLanguage":"ru","about":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"isPartOf":{"@id":"https://ilyakhudoeshkogit.github.io/#website"},"headline":"Шаблон сайта SharePoint без PowerShell-рутины: конструктор site script","datePublished":"2026-11-10","author":{"@id":"https://ilyakhudoeshkogit.github.io/#person"},"description":"Опишите списки, столбцы, меню, тему и хаб, и получите готовый site-script.json с постоянными GUID, скрипты регистрации для SPO и PnP PowerShell и схему будущего сайта."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://ilyakhudoeshkogit.github.io/"},{"@type":"ListItem","position":2,"name":"Заметки","item":"https://ilyakhudoeshkogit.github.io/notes/"},{"@type":"ListItem","position":3,"name":"Шаблон сайта SharePoint без PowerShell-рутины: конструктор site script","item":"https://ilyakhudoeshkogit.github.io/notes/sharepoint-site-script/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">К содержимому</a>
+<div class="sheet" id="top">
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="zones" aria-hidden="true"></div>
+<div class="inner">
+<header class="head"><a class="who" href="/">ХУДОЕШКО И.О.<small>SharePoint / SPFx</small></a><nav aria-label="Разделы сайта"><a href="/"><small>Лист 1</small>Главная</a><a href="/projects/"><small>Лист 2</small>Проекты</a><a href="/about/"><small>Лист 3</small>Обо мне</a><a href="/contact/"><small>Лист 4</small>Контакты</a><a href="/notes/" class="on"><small>Лист 5</small>Заметки</a></nav><div class="ctl"><a class="langbtn" href="/en/notes/sharepoint-site-script/" hreflang="en" lang="en" aria-label="English version">EN</a><button type="button" id="theme" aria-label="Сменить тему">Тема</button></div></header>
+<main id="main">
+<header class="pagehead"><div class="rv"><p class="crumb"><a href="/">Главная</a> / <a href="/notes/">Заметки</a></p></div><div class="rv" style="--d:0.06s"><h1>Шаблон сайта SharePoint без PowerShell-рутины: конструктор site script</h1></div><div class="rv" style="--d:0.12s"><p class="lead">Опишите списки, столбцы, меню, тему и хаб, и получите готовый site-script.json с постоянными GUID, скрипты регистрации для SPO и PnP PowerShell и схему будущего сайта.</p></div></header><section><div class="prog" aria-hidden="true"></div><article class="note"><div class="rv"><p>Когда отделов на портале несколько, одинаковые списки и меню на каждом сайте руками не создают. Для <a href="/projects/halden/">Halden</a> я писал <a href="/notes/provisioning-sharepoint-lists/">PowerShell-развёртывание</a>, но в SharePoint Online есть способ проще: шаблон сайта из JSON-скрипта действий. Его регистрируют один раз, и потом любой владелец сайта применяет его из меню «Применить шаблон сайта». JSON этот длинный, а Choice и подстановки в нём пишутся через экранированный CAML, поэтому собрал конструктор.</p></div><div class="rv"><div class="spfxv spq sst" id="sst" data-tpl="68"><p class="q-presets">Пример: <button type="button" class="q-pre" data-preset="halden">Отдел портала (Halden)</button> <button type="button" class="q-pre" data-preset="desk">Бронь мест (Desk Reservation)</button> <button type="button" class="q-pre" data-preset="exec">Согласования (Executive Dashboard)</button></p><fieldset class="q-fs"><legend>Сайт</legend><div class="ss-g"><label>Название шаблона<input id="ss-title" type="text" spellcheck="false" autocomplete="off" placeholder=""></label><label>Для каких сайтов<select id="ss-tpl"><option value="64">64 · Team site</option><option value="1">1 · Team site, no group</option><option value="68">68 · Communication site</option></select></label><label>Своя тема (applyTheme)<input id="ss-theme" type="text" spellcheck="false" autocomplete="off" placeholder="Halden"></label><label>Логотип (только 68)<input id="ss-logo" type="text" spellcheck="false" autocomplete="off" placeholder="/SiteAssets/logo.png"></label><label>Шапка<select id="ss-header"><option value="">—</option><option value="Standard">Standard</option><option value="Compact">Compact</option></select></label><label>Фон шапки<select id="ss-bg"><option value="">—</option><option value="None">None</option><option value="Neutral">Neutral</option><option value="Soft">Soft</option><option value="Strong">Strong</option></select></label><label>Язык и формат (LCID)<select id="ss-locale"><option value="">—</option><option value="1049">1049 · ru-RU</option><option value="1059">1059 · be-BY</option><option value="1033">1033 · en-US</option><option value="2057">2057 · en-GB</option></select></label><label>Гостевой доступ<select id="ss-sharing"><option value="">—</option><option value="Disabled">Disabled</option><option value="ExistingExternalUserSharingOnly">ExistingExternalUserSharingOnly</option><option value="ExternalUserSharingOnly">ExternalUserSharingOnly</option><option value="ExternalUserAndGuestSharing">ExternalUserAndGuestSharing</option></select></label><label>ID хаба (joinHubSite)<input id="ss-hub" type="text" spellcheck="false" autocomplete="off" placeholder="00000000-0000-0000-0000-000000000000"></label><label>ID решения SPFx (installSolution)<input id="ss-sol" type="text" spellcheck="false" autocomplete="off" placeholder="00000000-0000-0000-0000-000000000000"></label><label>Имя решения<input id="ss-soln" type="text" spellcheck="false" autocomplete="off" placeholder="my-webparts-client-side-solution"></label></div></fieldset><div id="ss-lists"></div><button type="button" id="ss-addl" class="q-pre">+ список</button><div class="q-out ss-out" aria-live="polite"><noscript><p>Конструктору нужен JavaScript. Пример того, что он собирает:</p><pre><code>{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json",
+  "actions": [
+    {
+      "verb": "createSPList",
+      "listName": "Desks",
+      "templateType": 100,
+      "subactions": [
+        { "verb": "setDescription", "description": "Bookable desks" },
+        {
+          "verb": "addSPFieldXml",
+          "schemaXml": "&lt;Field ID=\"{...}\" Type=\"Choice\" DisplayName=\"Zone\" Required=\"TRUE\" Format=\"Dropdown\" StaticName=\"Zone\" Name=\"Zone\"&gt;&lt;CHOICES&gt;&lt;CHOICE&gt;A&lt;/CHOICE&gt;&lt;CHOICE&gt;B&lt;/CHOICE&gt;&lt;/CHOICES&gt;&lt;/Field&gt;",
+          "addToDefaultView": true
+        }
+      ]
+    },
+    { "verb": "addNavLink", "url": "/Lists/Desks", "displayName": "Desks", "isWebRelative": true }
+  ]
+}</code></pre></noscript></div></div></div><h2 class="nh rv">Site script или PnP-шаблон</h2><div class="rv"><p>Site script умеет только то, что есть в его <a href="https://learn.microsoft.com/sharepoint/dev/declarative-customization/site-design-json-schema" rel="noopener">списке действий</a>: списки, столбцы, представления, меню, тему, хаб, установку решения и запуск Power Automate. Страницы с веб-частями, права на отдельные списки и данные он не создаёт. Для этого вызывают поток через <code>triggerFlow</code> или берут PnP-шаблон, как в Halden. Удобная середина: шаблон сайта создаёт каркас, а веб-части вроде <a href="/projects/desk-reservation/">Desk Reservation</a> ставятся действием <code>installSolution</code> из каталога приложений.</p></div><div class="rv"><p>Действия, параметры и лимиты сверены с Microsoft Learn 10.11.2026: <a href="https://learn.microsoft.com/sharepoint/dev/declarative-customization/site-design-overview" rel="noopener">обзор шаблонов сайтов</a> (типы 64, 1, 68; 30 действий для Invoke-SPOSiteDesign, 300 действий или 100 000 символов при асинхронном применении) и <a href="https://learn.microsoft.com/sharepoint/dev/declarative-customization/site-design-json-schema" rel="noopener">JSON-схема</a>. Конструктор работает только в браузере и ничего никуда не отправляет.</p></div></article><div class="pn rv"><a href="/notes/">← Все заметки</a><a href="/contact/">Написать</a></div></section>
+</main>
+<footer class="foot"><div class="stamp rv"><div class="tb"><div class="c3" style="--i:0"><small>Обозначение</small><span>ХИО-05.11</span></div><div class="c1" style="--i:1"><small>Лит.</small><span>У</span></div><div class="c1" style="--i:2"><small>Лист</small><span>5.11</span></div><div class="c1 e" style="--i:3"><small>Листов</small><span>4</span></div><div class="c4 name" style="--i:4"><small>Наименование</small><span class="ttl">Шаблон сайта SharePoint без PowerShell-рутины: конструктор site script</span></div><div class="c2 e" style="--i:5"><small>Дата</small><span>10.11.2026</span></div><div class="c3 rl" style="--i:6"><small>Разраб.</small><span>Худоешко И.О.</span></div><div class="c3 e rl" style="--i:7"><small>Почта</small><span><a href="mailto:ilyaxyd@icloud.com?subject=%D0%9F%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5%20/%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7&amp;body=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%98%D0%BB%D1%8C%D1%8F%21%0A%0A%D0%9F%D0%B8%D1%88%D1%83%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%3A%20%28%D0%B2%D0%B0%D0%BA%D0%B0%D0%BD%D1%81%D0%B8%D1%8F%20/%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%29%0A%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%3A%20%0A%D0%A1%D1%80%D0%BE%D0%BA%D0%B8%3A%20%0A%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%3A%20%28%D1%88%D1%82%D0%B0%D1%82%20/%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%2C%20%D0%BE%D1%84%D0%B8%D1%81%20/%20%D1%83%D0%B4%D0%B0%D0%BB%D1%91%D0%BD%D0%BD%D0%BE%29%0A%0A%D0%A1%20%D1%83%D0%B2%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%2C%0A">ilyaxyd@icloud.com</a></span></div></div></div><p class="copy"><span>© 2026 Худоешко И.О.</span><span>Код проектов закрыт: покажу по запросу</span><span class="priv">Статистика: <a href="https://ilyakhudoeshko.goatcounter.com" rel="noopener">GoatCounter</a> (без cookie)</span></p></footer>
+</div>
+</div>
+<script src="/script.552efde0.js"></script>
+<script src="/site-tool.041d89cc.js"></script>
+<script data-goatcounter="https://ilyakhudoeshko.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
